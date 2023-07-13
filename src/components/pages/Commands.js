@@ -27,7 +27,8 @@ function Commands() {
   };
 
   var baseUrl =
-    "https://ivnh6r4741.execute-api.us-east-1.amazonaws.com/default/CommandsForWeb";
+    "https://ivnh6r4741.execute-api.us-east-1.amazonaws.com/default/CommandsForWeb?device=" +
+    val;
   var apiKey = "daZz3dVkIVhxLOi6AwLm55lGopH2Gnq5xwAdOFUi";
 
   const [chart, setChart] = useState([]);
@@ -135,9 +136,9 @@ function Commands() {
           <label>
             DeviceID
             <select value={val} onChange={handleChange}>
-              <option value="100101">100101</option>
-              <option value="100102">100102</option>
-              <option value="100103">100103</option>
+              <option value="48A2A459">48A2A459</option>
+              <option value="66E32E1B">66E32E1B</option>
+              <option value="988A301F">988A301F</option>
             </select>
           </label>
         </div>

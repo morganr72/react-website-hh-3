@@ -134,7 +134,7 @@ function Temps() {
         {/* <input onChange={change} value={val} /> */}
         <div>
           <label>
-            DeviceID
+            UserID
             <select value={val} onChange={handleChange}>
               <option value="100101">100101</option>
               <option value="100102">100102</option>
