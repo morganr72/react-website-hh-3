@@ -10,13 +10,13 @@ function HeroSection() {
       <h1>FUTURE HEAT AND WATER</h1>
       <p>What are you waiting for?</p>
       <div className="hero-btns">
-        <Button
+        {/* <Button
           className="btns"
           buttonStyle="btn--outline"
           buttonSize="btn--large"
         >
           GET STARTED
-        </Button>
+        </Button> */}
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ ChartJS.register(
 );
 
 function Commands() {
-  const [val, setValue] = React.useState("100103");
+  const [val, setValue] = React.useState("66E32E1B");
   const handleChange = (event) => {
     setValue(event.target.value);
   };
@@ -96,7 +96,7 @@ function Commands() {
       },
       title: {
         display: true,
-        text: "Commands To Be Issues",
+        text: "Commands To Be Issued",
       },
     },
     scales: {
