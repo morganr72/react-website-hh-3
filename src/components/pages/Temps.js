@@ -82,7 +82,7 @@ function Temps() {
         label: `Solar Rad`,
         data: chart?.map((x) => x.SolarRadiation),
         borderWidth: 1,
-        borderColor: "#33cc00",
+        borderColor: "#33cc01",
         backgroundColor: "#33cc00",
         yAxisID: "y1",
       },
