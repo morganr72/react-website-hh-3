@@ -85,9 +85,6 @@ function Temps() {
         borderColor: "#33cc00",
         backgroundColor: "#33cc00",
         yAxisID: "y1",
-        pointStyle: "triangle",
-        pointRadius: 10,
-        pointHoverRadius: 15,
       },
     ],
   };
@@ -111,11 +108,19 @@ function Temps() {
         type: "linear",
         display: true,
         position: "left",
+        title: {
+          display: true,
+          text: "Degrees C",
+        },
       },
       y1: {
         type: "linear",
         display: true,
         position: "right",
+        title: {
+          display: true,
+          text: "Solar Rad",
+        },
       },
     },
   };
