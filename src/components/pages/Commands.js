@@ -70,7 +70,7 @@ function Commands() {
       {
         label: `Gas Water`,
         data: chart?.map((x) => x.GasWater),
-        backgroundColor: "#08051a",
+        backgroundColor: "#08051b",
       },
       {
         label: `HP Heating`,
