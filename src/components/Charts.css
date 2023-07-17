@@ -53,6 +53,102 @@
   width: auto;
 }
 
+
+
+@media screen and (max-width: 960px) {
+  .CboxLab {
+    background-color: #e2113f;
+    color: #FFFFFF;
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: table-cell;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    height: 30px;
+    line-height: 10px;
+    list-style: none;
+    margin: 0;
+    outline: none;
+    padding: 0px 6px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: middle;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .button-1 {
+    background-color: #e2113f;
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    height: 30px;
+    line-height: 20px;
+    list-style: none;
+    margin: 0;
+    outline: none;
+    padding: 0px 10px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: middle;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+}
+
+.TboxVal {
+  width: 100;
+  max-width: 500px;
+	/* overflow: hidden; */
+	position: relative;
+	margin: 0 auto;
+	text-align: left;
+}
+
+/* CSS */
+@media screen and (min-width: 961px) {
+.button-1 {
+  background-color: #e2113f;
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  outline: none;
+  padding: 10px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  vertical-align: middle;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
 .CboxLab {
   background-color: #e2113f;
   color: #FFFFFF;
@@ -80,44 +176,7 @@
   -webkit-user-select: none;
   touch-action: manipulation;
 }
-
-.TboxVal {
-  width: 100;
-  max-width: 500px;
-	/* overflow: hidden; */
-	position: relative;
-	margin: 0 auto;
-	text-align: left;
 }
-
-/* CSS */
-.button-1 {
-  background-color: #e2113f;
-  border-radius: 8px;
-  border-style: none;
-  box-sizing: border-box;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: inline-block;
-  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 18px;
-  font-weight: 500;
-  height: 40px;
-  line-height: 20px;
-  list-style: none;
-  margin: 0;
-  outline: none;
-  padding: 10px 16px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  transition: color 100ms;
-  vertical-align: baseline;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
 .button-1:hover,
 .button-1:focus {
   background-color: #F082AC;
