@@ -1,4 +1,5 @@
 import "../DevHealth.css";
+import "../Charts.css";
 import React, { useState, useEffect } from "react";
 
 function DevHealth() {
@@ -38,28 +39,42 @@ function DevHealth() {
     };
     fetchCommands();
   }, [baseUrl, apiKey]);
-  console.log("chart", chart);
+
   return (
     <>
       <div>
-        <table>
-          <tr>
-            <th>Device</th>
-            <th>Last Temperature Received</th>
-            <th>Last Commands Received</th>
-            <th>Last Commands Sent</th>
-          </tr>
-          {chart.map((val, key) => {
-            return (
-              <tr key={key}>
-                <td>{val.Device}</td>
-                <td>{val.LastTempReceived}</td>
-                <td>{val.LastCommandSent}</td>
-                <td>{val.LastCommandRecevied}</td>
-              </tr>
-            );
-          })}
-        </table>
+        <input type="text" class="TboxLab" value={"Device"} />
+        {chart.map((val, key) => {
+          return <input class="TboxVal" type="text" value={val.Device} />;
+        })}
+      </div>
+      <div>
+        <input type="text" class="TboxLab" value={"Last Temp Received"} />
+        {chart.map((val, key) => {
+          return (
+            <input class="TboxVal" type="text" value={val.LastTempReceived} />
+          );
+        })}
+      </div>
+      <div>
+        <input type="text" class="TboxLab" value={"Sent Command ID"} />
+        {chart.map((val, key) => {
+          return (
+            <input class="TboxVal" type="text" value={val.LastCommandSent} />
+          );
+        })}
+      </div>
+      <div>
+        <input type="text" class="TboxLab" value={"Receive Command ID"} />
+        {chart.map((val, key) => {
+          return (
+            <input
+              class="TboxVal"
+              type="text"
+              value={val.LastCommandRecevied}
+            />
+          );
+        })}
       </div>
       <div>
         <label>

@@ -5,6 +5,7 @@ import Home from "./components/pages/Home";
 import Temps from "./components/pages/Temps";
 import Commands from "./components/pages/Commands";
 import DevHealth from "./components/pages/DevHealth";
+import Prices from "./components/pages/Prices";
 
 import "./App.css";
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/Temps" element={<Temps />} />
           <Route path="/Commands" element={<Commands />} />
           <Route path="/DevHealth" element={<DevHealth />} />
+          <Route path="/Prices" element={<Prices />} />
         </Routes>
       </Router>
     </>

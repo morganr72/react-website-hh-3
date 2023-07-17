@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useId, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import format from "date-fns/format";
 import { addDays } from "date-fns";
 import { DateRange } from "react-date-range";
@@ -25,8 +25,8 @@ ChartJS.register(
   Legend
 );
 
-function Temps() {
-  const [val, setValue] = React.useState("100103");
+function Prices() {
+  const [val, setValue] = React.useState("51.7563 -1.25951");
   const handleChange = (event) => {
     setValue(event.target.value);
   };
@@ -70,13 +70,13 @@ function Temps() {
   console.log(fmDate);
   console.log(toDate);
   var baseUrl =
-    "https://zb93ovvqp4.execute-api.us-east-1.amazonaws.com/default/TempDataForWeb?device=" +
+    "https://7g9qfoin97.execute-api.us-east-1.amazonaws.com/default/PricesForWeb?location=" +
     val +
     "&fmdate=" +
     fmDate +
     "&todate=" +
     toDate;
-  var apiKey = "UqiatVkvjX6aYJn9Syzyx1kxY2yplhvW7iXTqhdM";
+  var apiKey = "FzPneALZaF4s6oJPbIqTv1UAE6SuEXJ53fFqZEIt";
 
   const [chart, setChart] = useState([]);
 
@@ -105,31 +105,23 @@ function Temps() {
   // console.log("chart", chart);
 
   var data = {
-    labels: chart?.map((x) => x.Time),
+    labels: chart?.map((x) => x.DateTime),
     datasets: [
       {
-        label: `Internal Temp`,
-        data: chart?.map((x) => x.Temperature),
+        label: `Price Per kWh`,
+        data: chart?.map((x) => x.priceperkwh),
         borderWidth: 1,
         borderColor: "#0033cc",
         backgroundColor: "#0033cc",
         yAxisID: "y",
       },
       {
-        label: `External Temp`,
-        data: chart?.map((x) => x.ExternalTemp),
+        label: `COP Adjusted Price`,
+        data: chart?.map((x) => x.copprice),
         borderWidth: 1,
         borderColor: "#cc00000",
         backgroundColor: "#cc00000",
         yAxisID: "y",
-      },
-      {
-        label: `Solar Rad`,
-        data: chart?.map((x) => x.SolarRadiation),
-        borderWidth: 1,
-        borderColor: "#33cc01",
-        backgroundColor: "#33cc00",
-        yAxisID: "y1",
       },
     ],
   };
@@ -145,7 +137,7 @@ function Temps() {
       },
       title: {
         display: true,
-        text: "Weather and Temperature",
+        text: "Electricity Prices",
       },
     },
     scales: {
@@ -155,16 +147,7 @@ function Temps() {
         position: "left",
         title: {
           display: true,
-          text: "Degrees C",
-        },
-      },
-      y1: {
-        type: "linear",
-        display: true,
-        position: "right",
-        title: {
-          display: true,
-          text: "Solar Rad",
+          text: "Pence",
         },
       },
     },
@@ -205,11 +188,9 @@ function Temps() {
         </div>
         <div>
           <label class="CboxLab">
-            {"UserID "}
+            {"Location "}
             <select value={val} onChange={handleChange}>
-              <option value="100101">100101</option>
-              <option value="100102">100102</option>
-              <option value="100103">100103</option>
+              <option value="51.7563 -1.25951">51.7563 -1.25951</option>
             </select>
           </label>
         </div>
@@ -223,4 +204,4 @@ function Temps() {
   );
 }
 
-export default Temps;
+export default Prices;
