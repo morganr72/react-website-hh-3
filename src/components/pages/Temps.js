@@ -13,6 +13,7 @@ import {
   LinearScale,
   Title,
   Legend,
+  Colors,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
@@ -22,11 +23,12 @@ ChartJS.register(
   LineElement,
   PointElement,
   Title,
-  Legend
+  Legend,
+  Colors
 );
 
 function Temps() {
-  const [val, setValue] = React.useState("100103");
+  const [val, setValue] = React.useState("988A301F");
   const handleChange = (event) => {
     setValue(event.target.value);
   };
@@ -70,13 +72,13 @@ function Temps() {
   console.log(fmDate);
   console.log(toDate);
   var baseUrl =
-    "https://zb93ovvqp4.execute-api.us-east-1.amazonaws.com/default/TempDataForWeb?device=" +
+    "https://goyh62l73j.execute-api.us-east-1.amazonaws.com/default/MasterTransactionAPI?controller=" +
     val +
     "&fmdate=" +
     fmDate +
     "&todate=" +
     toDate;
-  var apiKey = "UqiatVkvjX6aYJn9Syzyx1kxY2yplhvW7iXTqhdM";
+  var apiKey = "vbeLPuegOeCdlx7bouy95nsege1farX5TTbrvL60";
 
   const [chart, setChart] = useState([]);
 
@@ -93,7 +95,7 @@ function Temps() {
     })
       .then((response) => {
         response.json().then((json) => {
-          // console.log(json);
+          console.log(json);
           setChart(json.content);
         });
       })
@@ -102,34 +104,42 @@ function Temps() {
       });
   };
 
-  // console.log("chart", chart);
+  console.log("chart", chart);
 
   var data = {
-    labels: chart?.map((x) => x.Time),
+    labels: chart?.map((x) => x.DateTime),
     datasets: [
       {
         label: `Internal Temp`,
-        data: chart?.map((x) => x.Temperature),
+        data: chart?.map((x) => x.ReadTemp),
         borderWidth: 1,
-        borderColor: "#0033cc",
-        backgroundColor: "#0033cc",
+        // borderColor: "#0033cc",
+        // backgroundColor: "#0033cc",
         yAxisID: "y",
       },
       {
         label: `External Temp`,
-        data: chart?.map((x) => x.ExternalTemp),
+        data: chart?.map((x) => x.ForecastTemp),
         borderWidth: 1,
-        borderColor: "#cc00000",
-        backgroundColor: "#cc00000",
+        // borderColor: "#cc00000",
+        // backgroundColor: "#cc00000",
         yAxisID: "y",
       },
       {
         label: `Solar Rad`,
-        data: chart?.map((x) => x.SolarRadiation),
+        data: chart?.map((x) => x.solarrad),
         borderWidth: 1,
-        borderColor: "#33cc01",
-        backgroundColor: "#33cc00",
+        // borderColor: "#33cc01",
+        // backgroundColor: "#33cc00",
         yAxisID: "y1",
+      },
+      {
+        label: `Calculated Internal Temperature`,
+        data: chart?.map((x) => x.CalcInTemp),
+        borderWidth: 1,
+        // borderColor: "#33cc01",
+        // backgroundColor: "#33cc00",
+        yAxisID: "y",
       },
     ],
   };
@@ -207,9 +217,9 @@ function Temps() {
           <label class="CboxLab">
             {"UserID "}
             <select value={val} onChange={handleChange}>
-              <option value="100101">100101</option>
-              <option value="100102">100102</option>
-              <option value="100103">100103</option>
+              <option value="988A301F">988A301F</option>
+              <option value="66E32E1B">66E32E1B</option>
+              <option value="48A2A459">48A2A459</option>
             </select>
           </label>
         </div>
