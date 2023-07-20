@@ -67,6 +67,15 @@ function Navbar() {
             </li>
             <li className="nav-item">
               <Link
+                to="/InputProfile"
+                className="nav-links"
+                onClick={closeMobileMenu}
+              >
+                Input Profile
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
                 to="/Prices"
                 className="nav-links"
                 onClick={closeMobileMenu}

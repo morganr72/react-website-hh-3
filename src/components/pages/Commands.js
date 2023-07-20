@@ -13,20 +13,30 @@ import {
   BarController,
   BarElement,
   Tooltip,
+  Colors,
+  LineElement,
+  PointElement,
+  LinearScale,
 } from "chart.js";
+
 import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
 ChartJS.register(
   BarController,
   BarElement,
   CategoryScale,
+  LineElement,
+  PointElement,
+  LinearScale,
   Tooltip,
   Title,
-  Legend
+  Legend,
+  Colors
 );
 
 function Commands() {
-  const [val, setValue] = React.useState("66E32E1B");
+  const [val, setValue] = React.useState("48A2A459");
   const handleChange = (event) => {
     setValue(event.target.value);
   };
@@ -68,17 +78,14 @@ function Commands() {
   var toDate = format(range[0].endDate, "MM-dd-yyyy");
   console.log(fmDate);
   console.log(toDate);
-
   var baseUrl =
-    "https://ivnh6r4741.execute-api.us-east-1.amazonaws.com/default/CommandsForWeb?device=" +
+    "https://goyh62l73j.execute-api.us-east-1.amazonaws.com/default/MasterTransactionAPI?controller=" +
     val +
     "&fmdate=" +
     fmDate +
     "&todate=" +
     toDate;
-
-  var apiKey = "daZz3dVkIVhxLOi6AwLm55lGopH2Gnq5xwAdOFUi";
-
+  var apiKey = "vbeLPuegOeCdlx7bouy95nsege1farX5TTbrvL60";
   const [chart, setChart] = useState([]);
 
   const fetchCommands = function () {
@@ -110,23 +117,59 @@ function Commands() {
     datasets: [
       {
         label: `Gas Heating`,
+        type: "bar",
         data: chart?.map((x) => x.GasHeat),
-        backgroundColor: "#0033cc",
+        borderColor: "#ce1b1e",
+        backgroundColor: "#ce1b1e",
+        yAxisID: "y",
       },
       {
         label: `Gas Water`,
+        type: "bar",
         data: chart?.map((x) => x.GasWater),
-        backgroundColor: "#08051b",
+        borderColor: "#2613cc",
+        backgroundColor: "#2613cc",
+        yAxisID: "y",
       },
       {
         label: `HP Heating`,
+        type: "bar",
         data: chart?.map((x) => x.HPHeat),
-        backgroundColor: "#33cc00",
+        borderColor: "#14d214",
+        backgroundColor: "#14d214",
+        yAxisID: "y",
       },
       {
         label: `HP Water`,
+        type: "bar",
         data: chart?.map((x) => x.HPWater),
-        backgroundColor: "#de0b4a",
+        borderColor: "#68015a",
+        backgroundColor: "#68015a",
+        yAxisID: "y",
+      },
+      {
+        label: `Water Demand`,
+        type: "bar",
+        data: chart?.map((x) => x.WaterDemand),
+        borderColor: "#6adced",
+        backgroundColor: "#6adced",
+        yAxisID: "y",
+      },
+      {
+        label: `Desired Temp`,
+        type: "line",
+        data: chart?.map((x) => x.TempDemand),
+        borderColor: "#f49f16",
+        backgroundColor: "#f49f16",
+        yAxisID: "y1",
+      },
+      {
+        label: `Expected Temp`,
+        type: "line",
+        data: chart?.map((x) => x.CalcInTemp),
+        borderColor: "#0b0a0a",
+        backgroundColor: "#0b0a0a",
+        yAxisID: "y1",
       },
     ],
   };
@@ -146,28 +189,25 @@ function Commands() {
       },
     },
     scales: {
-      x: {
-        stacked: true,
-      },
+      x: {},
       y: {
         type: "linear",
         display: true,
         position: "left",
-        stacked: true,
         title: {
           display: true,
           text: "kWh",
         },
       },
-      //   y1: {
-      //     type: "linear",
-      //     display: true,
-      //     position: "right",
-      //     title: {
-      //       display: true,
-      //       text: "Solar Rad",
-      //     },
-      //   },
+      y1: {
+        type: "linear",
+        display: true,
+        position: "right",
+        title: {
+          display: true,
+          text: "Degress C",
+        },
+      },
     },
   };
 

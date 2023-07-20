@@ -182,12 +182,54 @@
   background-color: #F082AC;
 }
 
+.inputBox {
+  background-color: #ffffff;
+  color: #000000;
+  text-align: center;
+}
+
 
 
 #block_container {
   display: flex;
   justify-content: space-around;
+  vertical-align: middle;
   width: 100%;
-  padding-bottom: 25px;
+  /* padding-bottom: 25px; */
 }
+
+.sliders {
+  width: 200px;
+  padding : 10px 10px 10px 10px;
+  background-color: #ce1b1e;
+}
+ .graph1 {
+  background-color: #2613cc;
+ }
+
+ .graph2 {
+  background-color: #14d214;
+ }
+
+ .graph3 {
+  background-color: #e0f005;
+ }
+
+ .graph4 {
+  background-color: #68015a;
+ }
+
+ .graph5 {
+  background-color: #6adced;
+ }
+ .graph6 {
+  background-color: #f49f16;
+ }
+ .graph7 {
+  background-color: #0b0a0a;
+ }
+ .graph8 {
+  background-color: #04570f;
+ }
+
 

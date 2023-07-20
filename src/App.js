@@ -6,6 +6,7 @@ import Temps from "./components/pages/Temps";
 import Commands from "./components/pages/Commands";
 import DevHealth from "./components/pages/DevHealth";
 import Prices from "./components/pages/Prices";
+import InputProfile from "./components/pages/InputProfile";
 
 import "./App.css";
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/Commands" element={<Commands />} />
           <Route path="/DevHealth" element={<DevHealth />} />
           <Route path="/Prices" element={<Prices />} />
+          <Route path="/InputProfile" element={<InputProfile />} />
         </Routes>
       </Router>
     </>

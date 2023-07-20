@@ -13,6 +13,7 @@ import {
   LinearScale,
   Title,
   Legend,
+  Colors,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
@@ -22,11 +23,12 @@ ChartJS.register(
   LineElement,
   PointElement,
   Title,
-  Legend
+  Legend,
+  Colors
 );
 
 function Prices() {
-  const [val, setValue] = React.useState("51.7563 -1.25951");
+  const [val, setValue] = React.useState("48A2A459");
   const handleChange = (event) => {
     setValue(event.target.value);
   };
@@ -70,13 +72,13 @@ function Prices() {
   console.log(fmDate);
   console.log(toDate);
   var baseUrl =
-    "https://7g9qfoin97.execute-api.us-east-1.amazonaws.com/default/PricesForWeb?location=" +
+    "https://goyh62l73j.execute-api.us-east-1.amazonaws.com/default/MasterTransactionAPI?controller=" +
     val +
     "&fmdate=" +
     fmDate +
     "&todate=" +
     toDate;
-  var apiKey = "FzPneALZaF4s6oJPbIqTv1UAE6SuEXJ53fFqZEIt";
+  var apiKey = "vbeLPuegOeCdlx7bouy95nsege1farX5TTbrvL60";
 
   const [chart, setChart] = useState([]);
 
@@ -109,18 +111,26 @@ function Prices() {
     datasets: [
       {
         label: `Price Per kWh`,
-        data: chart?.map((x) => x.priceperkwh),
+        data: chart?.map((x) => x.ElecUnitPrice),
         borderWidth: 1,
-        borderColor: "#0033cc",
-        backgroundColor: "#0033cc",
+        // borderColor: "#0033cc",
+        // backgroundColor: "#0033cc",
         yAxisID: "y",
       },
       {
         label: `COP Adjusted Price`,
         data: chart?.map((x) => x.copprice),
         borderWidth: 1,
-        borderColor: "#cc00000",
-        backgroundColor: "#cc00000",
+        // borderColor: "#cc00000",
+        // backgroundColor: "#cc00000",
+        yAxisID: "y",
+      },
+      {
+        label: `Gas Price`,
+        data: chart?.map((x) => x.GasUnitPrice),
+        borderWidth: 1,
+        // borderColor: "#cc00000",
+        // backgroundColor: "#cc00000",
         yAxisID: "y",
       },
     ],
@@ -137,7 +147,7 @@ function Prices() {
       },
       title: {
         display: true,
-        text: "Electricity Prices",
+        text: "Prices",
       },
     },
     scales: {
@@ -188,9 +198,11 @@ function Prices() {
         </div>
         <div>
           <label class="CboxLab">
-            {"Location "}
+            {"UserID "}
             <select value={val} onChange={handleChange}>
-              <option value="51.7563 -1.25951">51.7563 -1.25951</option>
+              <option value="988A301F">988A301F</option>
+              <option value="66E32E1B">66E32E1B</option>
+              <option value="48A2A459">48A2A459</option>
             </select>
           </label>
         </div>
