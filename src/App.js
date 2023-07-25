@@ -6,7 +6,7 @@ import Temps from "./components/pages/Temps";
 import Commands from "./components/pages/Commands";
 import DevHealth from "./components/pages/DevHealth";
 import Prices from "./components/pages/Prices";
-import InputProfile from "./components/pages/InputProfile2";
+import InputProfile from "./components/pages/InputProfile";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import "./App.css";

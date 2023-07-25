@@ -2,6 +2,7 @@ import React, { useState, useEffect, useId, useRef } from "react";
 import format from "date-fns/format";
 import { addDays } from "date-fns";
 import { DateRange } from "react-date-range";
+import "chartjs-adapter-moment";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import "../Charts.css";
@@ -13,6 +14,7 @@ import {
   BarController,
   BarElement,
   Tooltip,
+  TimeScale,
   Colors,
   LineElement,
   PointElement,
@@ -29,6 +31,7 @@ ChartJS.register(
   LineElement,
   PointElement,
   LinearScale,
+  TimeScale,
   Tooltip,
   Title,
   Legend,
@@ -119,6 +122,7 @@ function Commands() {
         label: `Gas Heating`,
         type: "bar",
         data: chart?.map((x) => x.GasHeat),
+        barThickness: 2,
         borderColor: "#ce1b1e",
         backgroundColor: "#ce1b1e",
         yAxisID: "y",
@@ -127,6 +131,7 @@ function Commands() {
         label: `Gas Water`,
         type: "bar",
         data: chart?.map((x) => x.GasWater),
+        barThickness: 2,
         borderColor: "#2613cc",
         backgroundColor: "#2613cc",
         yAxisID: "y",
@@ -135,6 +140,7 @@ function Commands() {
         label: `HP Heating`,
         type: "bar",
         data: chart?.map((x) => x.HPHeat),
+        barThickness: 2,
         borderColor: "#14d214",
         backgroundColor: "#14d214",
         yAxisID: "y",
@@ -143,6 +149,7 @@ function Commands() {
         label: `HP Water`,
         type: "bar",
         data: chart?.map((x) => x.HPWater),
+        barThickness: 2,
         borderColor: "#68015a",
         backgroundColor: "#68015a",
         yAxisID: "y",
@@ -152,6 +159,7 @@ function Commands() {
         type: "bar",
         data: chart?.map((x) => x.WaterDemand),
         borderColor: "#6adced",
+        barThickness: 2,
         backgroundColor: "#6adced",
         yAxisID: "y",
       },
@@ -159,6 +167,7 @@ function Commands() {
         label: `Desired Temp`,
         type: "line",
         data: chart?.map((x) => x.TempDemand),
+        pointRadius: 0,
         borderColor: "#f49f16",
         backgroundColor: "#f49f16",
         yAxisID: "y1",
@@ -167,6 +176,7 @@ function Commands() {
         label: `Expected Temp`,
         type: "line",
         data: chart?.map((x) => x.CalcInTemp),
+        pointRadius: 0,
         borderColor: "#0b0a0a",
         backgroundColor: "#0b0a0a",
         yAxisID: "y1",
@@ -189,7 +199,15 @@ function Commands() {
       },
     },
     scales: {
-      x: {},
+      x: {
+        type: "time",
+        time: {
+          unit: "hour",
+          displayFormats: {
+            hour: "dd MMM D HH:mm",
+          },
+        },
+      },
       y: {
         type: "linear",
         display: true,
