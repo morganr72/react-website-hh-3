@@ -110,27 +110,27 @@ function Prices() {
     labels: chart?.map((x) => x.DateTime),
     datasets: [
       {
-        label: `Price Per kWh`,
+        label: `Elec Price`,
         data: chart?.map((x) => x.ElecUnitPrice),
         borderWidth: 1,
-        // borderColor: "#0033cc",
-        // backgroundColor: "#0033cc",
+        borderColor: "#ce1b1e",
+        backgroundColor: "#ce1b1e",
         yAxisID: "y",
       },
       {
         label: `COP Adjusted Price`,
         data: chart?.map((x) => x.copprice),
         borderWidth: 1,
-        // borderColor: "#cc00000",
-        // backgroundColor: "#cc00000",
+        borderColor: "#2613cc",
+        backgroundColor: "#2613cc",
         yAxisID: "y",
       },
       {
         label: `Gas Price`,
         data: chart?.map((x) => x.GasUnitPrice),
         borderWidth: 1,
-        // borderColor: "#cc00000",
-        // backgroundColor: "#cc00000",
+        borderColor: "#14d214",
+        backgroundColor: "#14d214",
         yAxisID: "y",
       },
     ],
@@ -212,6 +212,11 @@ function Prices() {
           </button>
         </div>
       </div>
+      <body>
+        <canvas id="chartJSContainer" width="600" height="400"></canvas>
+        <button id="myBtn">Hide dataset</button>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.js"></script>
+      </body>
     </>
   );
 }
