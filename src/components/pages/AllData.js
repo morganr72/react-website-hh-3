@@ -134,7 +134,7 @@ function AllData() {
         pointRadius: 0,
         borderColor: "#68015a",
         backgroundColor: "#68015a",
-        yAxisID: "y1",
+        yAxisID: "y",
       },
       {
         label: `Expected Temp`,
