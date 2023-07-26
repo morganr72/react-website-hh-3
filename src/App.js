@@ -4,10 +4,24 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/pages/Home";
 import Temps from "./components/pages/Temps";
 import Commands from "./components/pages/Commands";
-import DevHealth from "./components/pages/DevHealth";
+import AllData from "./components/pages/AllData";
 import Prices from "./components/pages/Prices";
 import InputProfile from "./components/pages/InputProfile";
 import { useAuth0 } from "@auth0/auth0-react";
+
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import {
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+  SelectChangeEvent,
+  Grid,
+  Box,
+  Button,
+  Slider,
+  Container,
+} from "@mui/material";
 
 import "./App.css";
 
@@ -51,14 +65,45 @@ function App() {
     <>
       <Router>
         <Navbar />
-        <LoginButton />
-        <LogoutButton />
-        <Profile />
+        <Container>
+          <Grid container spacing={2}>
+            <Grid
+              item
+              xs={2}
+              container
+              direction="row"
+              alignItems="flex-end"
+              justify="center"
+            >
+              <LoginButton />
+            </Grid>
+            <Grid
+              item
+              xs={2}
+              container
+              direction="row"
+              alignItems="flex-end"
+              justify="center"
+            >
+              <LogoutButton />
+            </Grid>
+            <Grid
+              item
+              xs={3}
+              container
+              direction="row"
+              alignItems="flex-end"
+              justify="center"
+            >
+              <Profile />
+            </Grid>
+          </Grid>
+        </Container>
         <Routes>
           <Route path="/" exact element={<Home />} />
           <Route path="/Temps" element={<Temps />} />
           <Route path="/Commands" element={<Commands />} />
-          <Route path="/DevHealth" element={<DevHealth />} />
+          <Route path="/AllData" element={<AllData />} />
           <Route path="/Prices" element={<Prices />} />
           <Route path="/InputProfile" element={<InputProfile />} />
         </Routes>

@@ -49,11 +49,11 @@ function Navbar() {
             </li>
             <li className="nav-item">
               <Link
-                to="/DevHealth"
+                to="/AllData"
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
-                Device Health
+                All Data
               </Link>
             </li>
             <li className="nav-item">

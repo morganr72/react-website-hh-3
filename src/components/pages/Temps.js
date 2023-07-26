@@ -102,9 +102,16 @@ function Temps() {
       .catch((error) => {
         console.log(error);
       });
+    // for (let entry of chart) {
+    //   Object.entries(entry).map((obj) => {
+    //     if (obj[1] === "") entry[obj[0]] = null;
+    //   });
+    // }
+
+    console.log("eChart", chart);
   };
 
-  console.log("chart", chart);
+  // console.log("chart", chart);
 
   var data = {
     labels: chart?.map((x) => x.DateTime),
@@ -114,6 +121,7 @@ function Temps() {
         data: chart?.map((x) => x.ReadTemp),
         borderWidth: 1,
         pointRadius: 0,
+        spanGaps: true,
         borderColor: "#ce1b1e",
         backgroundColor: "#ce1b1e",
         yAxisID: "y",
@@ -149,6 +157,7 @@ function Temps() {
   };
 
   var options = {
+    spanGaps: true,
     maintainAspectRatio: false,
     responsive: true,
     plugins: {
