@@ -145,6 +145,17 @@ function AllData() {
         backgroundColor: "#0b0a0a",
         yAxisID: "y1",
       },
+
+      {
+        label: `External Temp`,
+        type: "line",
+        data: chart?.map((x) => x.ForecastTemp),
+        pointRadius: 3,
+        borderColor: "#ce1b1e",
+        backgroundColor: "#ce1b1e",
+        yAxisID: "y1",
+      },
+
       {
         label: `Water Demand`,
         type: "bar",
