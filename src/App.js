@@ -65,40 +65,6 @@ function App() {
     <>
       <Router>
         <Navbar />
-        <Container>
-          <Grid container spacing={2}>
-            <Grid
-              item
-              xs={2}
-              container
-              direction="row"
-              alignItems="flex-end"
-              justify="center"
-            >
-              <LoginButton />
-            </Grid>
-            <Grid
-              item
-              xs={2}
-              container
-              direction="row"
-              alignItems="flex-end"
-              justify="center"
-            >
-              <LogoutButton />
-            </Grid>
-            <Grid
-              item
-              xs={3}
-              container
-              direction="row"
-              alignItems="flex-end"
-              justify="center"
-            >
-              <Profile />
-            </Grid>
-          </Grid>
-        </Container>
         <Routes>
           <Route path="/" exact element={<Home />} />
           <Route path="/Temps" element={<Temps />} />
