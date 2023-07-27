@@ -120,22 +120,15 @@ function AllData() {
     datasets: [
       {
         label: `Desired Temp`,
+        pointHitRadius: 1,
         type: "line",
         data: chart?.map((x) => x.TempDemand),
-        pointRadius: 3,
+        pointRadius: 1,
         borderColor: "#f49f16",
         backgroundColor: "#f49f16",
         yAxisID: "y1",
       },
-      {
-        label: `Tank Volume`,
-        type: "line",
-        data: chart?.map((x) => x.RunningVol),
-        pointRadius: 3,
-        borderColor: "#68015a",
-        backgroundColor: "#68015a",
-        yAxisID: "y",
-      },
+
       {
         label: `Expected Temp`,
         type: "line",
@@ -155,7 +148,15 @@ function AllData() {
         backgroundColor: "#ce1b1e",
         yAxisID: "y1",
       },
-
+      {
+        label: `Tank Volume`,
+        type: "line",
+        data: chart?.map((x) => x.RunningVol),
+        pointRadius: 3,
+        borderColor: "#68015a",
+        backgroundColor: "#68015a",
+        yAxisID: "y",
+      },
       {
         label: `Water Demand`,
         type: "bar",
@@ -242,6 +243,9 @@ function AllData() {
 
   var options = {
     maintainAspectRatio: false,
+    interaction: {
+      mode: "index",
+    },
     responsive: true,
     plugins: {
       legend: {
@@ -251,7 +255,7 @@ function AllData() {
       },
       title: {
         display: true,
-        text: "Commands To Be Issued",
+        text: "Temperatures and Water",
       },
     },
     scales: {
@@ -287,6 +291,9 @@ function AllData() {
 
   var options1 = {
     maintainAspectRatio: false,
+    interaction: {
+      mode: "index",
+    },
     responsive: true,
     plugins: {
       legend: {
@@ -296,7 +303,7 @@ function AllData() {
       },
       title: {
         display: true,
-        text: "Commands To Be Issued",
+        text: "Prices and Commands",
       },
     },
     scales: {

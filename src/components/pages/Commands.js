@@ -186,6 +186,9 @@ function Commands() {
 
   var options = {
     maintainAspectRatio: false,
+    interaction: {
+      mode: "index",
+    },
     responsive: true,
     plugins: {
       legend: {

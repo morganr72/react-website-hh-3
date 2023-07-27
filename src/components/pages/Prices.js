@@ -114,7 +114,7 @@ function Prices() {
         data: chart?.map((x) => x.ElecUnitPrice),
         borderWidth: 2,
         borderColor: "#ce1b1e",
-        pointRadius: 0,
+        pointRadius: 3,
         backgroundColor: "#ce1b1e",
         yAxisID: "y",
       },
@@ -122,7 +122,7 @@ function Prices() {
         label: `COP Adjusted Price`,
         data: chart?.map((x) => x.copprice),
         borderWidth: 2,
-        pointRadius: 0,
+        pointRadius: 3,
         borderColor: "#2613cc",
         backgroundColor: "#2613cc",
         yAxisID: "y",
@@ -131,7 +131,7 @@ function Prices() {
         label: `Gas Price`,
         data: chart?.map((x) => x.GasEffUnitPrice),
         borderWidth: 2,
-        pointRadius: 0,
+        pointRadius: 3,
         borderColor: "#14d214",
         backgroundColor: "#14d214",
         yAxisID: "y",
@@ -141,6 +141,9 @@ function Prices() {
 
   var options = {
     maintainAspectRatio: false,
+    interaction: {
+      mode: "index",
+    },
     responsive: true,
     plugins: {
       legend: {
@@ -154,6 +157,15 @@ function Prices() {
       },
     },
     scales: {
+      x: {
+        type: "time",
+        time: {
+          unit: "hour",
+          displayFormats: {
+            hour: "dd MMM D HH:mm",
+          },
+        },
+      },
       y: {
         type: "linear",
         display: true,

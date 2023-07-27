@@ -158,6 +158,9 @@ function Temps() {
 
   var options = {
     spanGaps: true,
+    interaction: {
+      mode: "index",
+    },
     maintainAspectRatio: false,
     responsive: true,
     plugins: {
@@ -172,6 +175,15 @@ function Temps() {
       },
     },
     scales: {
+      x: {
+        type: "time",
+        time: {
+          unit: "hour",
+          displayFormats: {
+            hour: "dd MMM D HH:mm",
+          },
+        },
+      },
       y: {
         type: "linear",
         display: true,
