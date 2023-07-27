@@ -5,6 +5,7 @@ import { DateRange } from "react-date-range";
 import "chartjs-adapter-moment";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
+import { useAuth0 } from "@auth0/auth0-react";
 import "../Charts.css";
 import {
   Chart as ChartJS,
@@ -39,7 +40,9 @@ ChartJS.register(
 );
 
 function AllData() {
-  const [val, setValue] = React.useState("48A2A459");
+  const { user } = useAuth0();
+
+  const [val, setValue] = React.useState("P100001");
   const handleChange = (event) => {
     setValue(event.target.value);
   };
@@ -76,19 +79,24 @@ function AllData() {
       setOpen(false);
     }
   };
-  console.log(range);
+
+  console.log("user id:", user.name);
   var fmDate = format(range[0].startDate, "MM-dd-yyyy");
   var toDate = format(range[0].endDate, "MM-dd-yyyy");
-  console.log(fmDate);
-  console.log(toDate);
+  //   console.log(fmDate);
+  //   console.log(toDate);
   var baseUrl =
-    "https://goyh62l73j.execute-api.us-east-1.amazonaws.com/default/MasterTransactionAPI?controller=" +
+    "https://goyh62l73j.execute-api.us-east-1.amazonaws.com/default/MasterTransactionAPI?premid=" +
     val +
+    "&userid= " +
+    user.name +
     "&fmdate=" +
     fmDate +
     "&todate=" +
     toDate;
+  console.log(baseUrl);
   var apiKey = "vbeLPuegOeCdlx7bouy95nsege1farX5TTbrvL60";
+
   const [chart, setChart] = useState([]);
 
   const fetchCommands = function () {
@@ -340,6 +348,7 @@ function AllData() {
   return (
     <>
       <div id="block_container">
+        {/* <label>{user.name}</label> */}
         <div className="calendarWrap">
           <label class="CboxLab">
             {"Select Dates "}
@@ -371,9 +380,9 @@ function AllData() {
           <label class="CboxLab">
             {"Device Id "}
             <select value={val} onChange={handleChange}>
-              <option value="48A2A459">48A2A459</option>
-              <option value="66E32E1B">66E32E1B</option>
-              <option value="988A301F">988A301F</option>
+              <option value="P100001">Office</option>
+              <option value="P100002">Home 1</option>
+              <option value="P100003">Home 2</option>
             </select>
           </label>
         </div>
