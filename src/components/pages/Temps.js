@@ -119,8 +119,8 @@ function Temps() {
       {
         label: `Internal Temp`,
         data: chart?.map((x) => x.ReadTemp),
-        borderWidth: 1,
-        pointRadius: 0,
+        borderWidth: 2,
+        pointRadius: 3,
         spanGaps: true,
         borderColor: "#ce1b1e",
         backgroundColor: "#ce1b1e",
@@ -129,8 +129,8 @@ function Temps() {
       {
         label: `External Temp`,
         data: chart?.map((x) => x.ForecastTemp),
-        borderWidth: 1,
-        pointRadius: 0,
+        borderWidth: 2,
+        pointRadius: 3,
         borderColor: "#2613cc",
         backgroundColor: "#2613cc",
         yAxisID: "y",
@@ -138,8 +138,8 @@ function Temps() {
       {
         label: `Solar Rad`,
         data: chart?.map((x) => x.solarrad),
-        borderWidth: 1,
-        pointRadius: 0,
+        borderWidth: 2,
+        pointRadius: 3,
         borderColor: "#f49f16",
         backgroundColor: "#f49f16",
         yAxisID: "y1",
@@ -147,8 +147,8 @@ function Temps() {
       {
         label: `Calculated Internal Temperature`,
         data: chart?.map((x) => x.CalcInTemp),
-        borderWidth: 1,
-        pointRadius: 0,
+        borderWidth: 2,
+        pointRadius: 3,
         borderColor: "#14d214",
         backgroundColor: "#14d214",
         yAxisID: "y",
@@ -159,6 +159,7 @@ function Temps() {
   var options = {
     spanGaps: true,
     interaction: {
+      intersect: false,
       mode: "index",
     },
     maintainAspectRatio: false,
@@ -169,6 +170,7 @@ function Temps() {
           fontSize: 14,
         },
       },
+
       title: {
         display: true,
         text: "Weather and Temperature",
