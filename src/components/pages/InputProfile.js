@@ -89,10 +89,15 @@ function Picker() {
   //   temp: state.temp,
   //   day: state.day,
   // };
+  const [val, setValue] = React.useState("P100001");
+  const handleDevChange = (event) => {
+    setValue(event.target.value);
+  };
   const jsonString = " ";
   var baseUrl =
     "https://w2s4kg8ggk.execute-api.us-east-1.amazonaws.com/default/InputProfileAPI?device=" +
-    "66E32E1B&timestart=" +
+    val +
+    "&timestart=" +
     state.times[0] +
     "&timeend=" +
     state.times[1] +
@@ -155,6 +160,16 @@ function Picker() {
   return (
     <>
       <div class="godown-60" id="godown"></div>
+      <div>
+        <label class="CboxLab">
+          {"UserID "}
+          <select value={val} onChange={handleChange}>
+            <option value="P100001">Office</option>
+            <option value="P100002">Home 1</option>
+            <option value="P100003">Home 2</option>
+          </select>
+        </label>
+      </div>
       <ThemeProvider theme={inptheme}>
         <Container>
           <Grid container spacing={10}>
@@ -220,7 +235,7 @@ function Picker() {
                   name="day"
                   value={state.day}
                   label="Day"
-                  onChange={handleChange}
+                  onChange={handleDevChange}
                 >
                   <MenuItem value={1}>Weekday</MenuItem>
                   <MenuItem value={2}>Weekend</MenuItem>

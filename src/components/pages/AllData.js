@@ -10,6 +10,7 @@ import "../Charts.css";
 import {
   Chart as ChartJS,
   CategoryScale,
+  Filler,
   Title,
   Legend,
   BarController,
@@ -31,6 +32,7 @@ ChartJS.register(
   CategoryScale,
   LineElement,
   PointElement,
+  Filler,
   LinearScale,
   TimeScale,
   Tooltip,
@@ -127,17 +129,6 @@ function AllData() {
     labels: chart?.map((x) => x.DateTime),
     datasets: [
       {
-        label: `Desired Temp`,
-        pointHitRadius: 1,
-        type: "line",
-        data: chart?.map((x) => x.TempDemand),
-        pointRadius: 1,
-        borderColor: "#f49f16",
-        backgroundColor: "#f49f16",
-        yAxisID: "y1",
-      },
-
-      {
         label: `Expected Temp`,
         type: "line",
         data: chart?.map((x) => x.CalcInTemp),
@@ -164,6 +155,29 @@ function AllData() {
         borderColor: "#68015a",
         backgroundColor: "#68015a",
         yAxisID: "y",
+      },
+      {
+        label: `Desired Temp Low`,
+        pointHitRadius: 1,
+        type: "line",
+        data: chart?.map((x) => x.DesTempLow),
+        pointRadius: 1,
+        fill: "+1",
+        borderColor: "#f49f16",
+        backgroundColor: "#f49f16",
+        yAxisID: "y1",
+      },
+
+      {
+        label: `Desired Temp High`,
+        pointHitRadius: 1,
+        type: "line",
+        data: chart?.map((x) => x.DesTempHigh),
+        pointRadius: 1,
+        fill: false,
+        borderColor: "#14d214",
+        backgroundColor: "#14d214",
+        yAxisID: "y1",
       },
       {
         label: `Water Demand`,
