@@ -157,14 +157,14 @@ function AllData() {
         yAxisID: "y",
       },
       {
-        label: `Desired Temp Low`,
+        label: `Desired Temp Range`,
         pointHitRadius: 1,
         type: "line",
         data: chart?.map((x) => x.DesTempLow),
         pointRadius: 1,
         fill: "+1",
-        borderColor: "#f49f16",
-        backgroundColor: "#f49f16",
+        borderColor: "#f6ca83",
+        backgroundColor: "#f6ca83",
         yAxisID: "y1",
       },
 
@@ -247,8 +247,8 @@ function AllData() {
         type: "bar",
         data: chart?.map((x) => x.COPHPHeat),
         barThickness: "flex",
-        borderColor: "#6adced",
-        backgroundColor: "#6adced",
+        borderColor: "#a1ac02",
+        backgroundColor: "#a1ac02",
         yAxisID: "y",
       },
       {
