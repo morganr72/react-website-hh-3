@@ -98,11 +98,11 @@ function Navbar() {
             </li>
             <li className="nav-item">
               <Link
-                to="/Commands"
+                to="/CostCompare"
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
-                Commands
+                Cost Compare
               </Link>
             </li>
             <li className="nav-item">

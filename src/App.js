@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/pages/Home";
 import Temps from "./components/pages/Temps";
-import Commands from "./components/pages/Commands";
+import CostCompare from "./components/pages/CostCompare";
 import AllData from "./components/pages/AllData";
 import Prices from "./components/pages/Prices";
 import InputProfile from "./components/pages/InputProfile";
@@ -68,7 +68,7 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Home />} />
           <Route path="/Temps" element={<Temps />} />
-          <Route path="/Commands" element={<Commands />} />
+          <Route path="/CostCompare" element={<CostCompare />} />
           <Route path="/AllData" element={<AllData />} />
           <Route path="/Prices" element={<Prices />} />
           <Route path="/InputProfile" element={<InputProfile />} />
