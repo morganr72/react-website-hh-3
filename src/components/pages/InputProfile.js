@@ -6,18 +6,39 @@ import {
   MenuItem,
   FormControl,
   Select,
-  SelectChangeEvent,
   Grid,
-  Box,
   Button,
   Slider,
   Container,
 } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
 
 // function valuetext(temp) {
 //   return `${temp}°C`;
 // }
-
+// let tblwkd = [];
+// let tblstarttime = [];
+// let tblendtime = [];
+// let tblmintemp = [];
+// let tblmaxtemp = [];
+// let tblcounter = [];
+let counter = 0;
+let displayday = "Weekday";
+// var tbldata = [
+//   {
+//     id: 0,
+//     Day: 1,
+//     starttime: "00:00",
+//     endtime: "08:00",
+//     mintemp: 17,
+//     maxtemp: 20,
+//   },
+// ];
+var tbldata = [];
+let rows = [];
+let trows = [];
+let trowsf = [];
+let columns = [];
 const inptheme = createTheme({
   components: {
     // Name of the component
@@ -33,51 +54,9 @@ const inptheme = createTheme({
   },
 });
 
-// export function DaySelect() {
-//   const [day, setAge] = React.useState("");
-
-//   const handleChange = (event) => {
-//     setAge(event.target.value);
-//   };
-
-// return (
-//   <FormControl fullWidth>
-//     <InputLabel>Day</InputLabel>
-//     <Select value={day} label="Day" onChange={handleChange}>
-//       <MenuItem value={1}>Weekday</MenuItem>
-//       <MenuItem value={2}>Weekend</MenuItem>
-//     </Select>
-//   </FormControl>
-// );
-// }
-
-// export function DiscreteSlider() {
-//   const [temp, setValue] = React.useState([16]);
-
-//   const handleChange = (event, newValue) => {
-//     setValue(newValue);
-//   };
-// return (
-//   <>
-//     <ThemeProvider theme={inptheme}>
-//       <Slider
-//         defaultValue={18}
-//         value={temp}
-//         valueLabelDisplay="on"
-//         onChange={handleChange}
-//         step={1}
-//         size="large"
-//         marks
-//         min={16}
-//         max={24}
-//       />
-//     </ThemeProvider>
-//   </>
-// );
-// }
 function Picker() {
   const [state, setState] = React.useState({
-    temp: "",
+    temp: [18, 22],
     day: "",
     times: [0, 20],
   });
@@ -92,7 +71,9 @@ function Picker() {
   const [val, setValue] = React.useState("P100001");
   const handleDevChange = (event) => {
     setValue(event.target.value);
+    console.log("DevValue", val);
   };
+
   const jsonString = " ";
   var baseUrl =
     "https://w2s4kg8ggk.execute-api.us-east-1.amazonaws.com/default/InputProfileAPI?device=" +
@@ -101,15 +82,17 @@ function Picker() {
     state.times[0] +
     "&timeend=" +
     state.times[1] +
-    "&temp=" +
-    state.temp +
+    "&templ=" +
+    state.temp[0] +
+    "&temph=" +
+    state.temp[1] +
     "&day=" +
     state.day;
   var apiKey = "w6wmyIgvla15dJq7jUbZI91YzsZisEIE6uWH8mS0";
 
   function handleChange(evt) {
     const value = evt.target.value;
-    console.log("Values", evt.target.value);
+    console.log("Value", evt.target.value);
     console.log("Name", evt.target.name);
 
     setState({
@@ -118,16 +101,16 @@ function Picker() {
     });
   }
 
-  function handleRange(evt) {
-    const value = evt.target.value;
-    console.log("Values", evt.target.value);
-    console.log("Name", evt.target.name);
+  // function handleRange(evt) {
+  //   const value = evt.target.value;
+  //   console.log("Values", evt.target.value);
+  //   console.log("Name", evt.target.name);
 
-    setState({
-      ...state,
-      [evt.target.name]: value,
-    });
-  }
+  //   setState({
+  //     ...state,
+  //     [evt.target.name]: value,
+  //   });
+  // }
   const options = {
     method: "GET",
     headers: {
@@ -135,14 +118,134 @@ function Picker() {
       "x-api-key": `${apiKey}`,
     },
   };
+  const emarks = [
+    {
+      value: 0,
+      label: "00:00",
+    },
+    {
+      value: 3,
+      label: "03:00",
+    },
+    {
+      value: 6,
+      label: "06:00",
+    },
+    {
+      value: 9,
+      label: "09:00",
+    },
+    {
+      value: 12,
+      label: "12:00",
+    },
+    {
+      value: 15,
+      label: "15:00",
+    },
+    {
+      value: 18,
+      label: "18:00",
+    },
+    {
+      value: 21,
+      label: "21:00",
+    },
+    {
+      value: 24,
+      label: "00:00",
+    },
+  ];
+  const pmarks = [
+    {
+      value: 16,
+      label: "16°",
+    },
+    {
+      value: 18,
+      label: "18°",
+    },
+    {
+      value: 20,
+      label: "20°",
+    },
+    {
+      value: 22,
+      label: "22°",
+    },
+    {
+      value: 24,
+      label: "24°",
+    },
+  ];
+  var columns = [
+    { field: "Day", headerName: "Day", width: 130 },
+    { field: "starttime", headerName: "Start Time", width: 130 },
+    { field: "endtime", headerName: "End Time", width: 130 },
+    { field: "mintemp", headerName: "Min Temp", width: 130 },
+    { field: "maxtemp", headerName: "Max Temp", width: 180 },
+  ];
+  var rows = tbldata;
 
+  // var trows = [
+  //   {
+  //     id: "001",
+  //     Day: 1,
+  //     starttime: "00:00",
+  //     endtime: "08:00",
+  //     mintemp: 17,
+  //     maxtemp: 20,
+  //   },
+  // ];
+  console.log("Rows", rows);
   const sendData = function () {
+    counter++;
+    if (state.day == 1) {
+      displayday = "Weekday";
+    } else {
+      displayday = "Weekend";
+    }
+    console.log("Counter", counter);
     console.log("JSon", jsonString);
     console.log("URL", baseUrl);
     console.log("sStartTimes", state.times[0]);
     console.log("sEndTimes", state.times[1]);
     console.log("sDay", state.day);
-    console.log("stemp", state.temp);
+    console.log("stemph", state.temp[0]);
+    console.log("stempl", state.temp[1]);
+    const tableworkdat = {
+      id: counter,
+      Day: displayday,
+      starttime: state.times[0] + ":00",
+      endtime: state.times[1] + ":00",
+      mintemp: state.temp[0],
+      maxtemp: state.temp[1],
+    };
+    tbldata = [...tbldata, tableworkdat];
+    // tblcounter.push(counter);
+    // tblstarttime.push(state.times[0]);
+    // tblendtime.push(state.times[1]);
+    // tblmaxtemp.push(state.temp[1]);
+    // tblmintemp.push(state.temp[0]);
+    // tblwkd.push(state.day);
+    // console.log("start times", tblstarttime);
+    // console.log("end times", tblendtime);
+    // console.log("max temps", tblmaxtemp);
+    // console.log("min temps", tblmintemp);
+    // console.log("day", tblwkd);
+    console.log("Data", tbldata);
+
+    // const trows = [rows[0]];
+    // const trows = tbldata.map((trows) => ({
+    //   Day: trows.Day,
+    //   starttime: trows.starttime,
+    //   endtime: trows.endtime,
+    //   mintemp: trows.mintemp,
+    //   maxtemp: trows.maxtemp,
+    // }));
+    console.log("Columns", columns);
+    console.log("Rows", rows);
+    console.log("Trows", trows);
     fetch(baseUrl, options)
       .then((response) => {
         if (!response.ok) {
@@ -163,7 +266,7 @@ function Picker() {
       <div>
         <label class="CboxLab">
           {"UserID "}
-          <select value={val} onChange={handleChange}>
+          <select value={val} onChange={handleDevChange}>
             <option value="P100001">Office</option>
             <option value="P100002">Home 1</option>
             <option value="P100003">Home 2</option>
@@ -186,13 +289,13 @@ function Picker() {
             >
               <Slider
                 defaultValue={[0, 24]}
-                valueLabelDisplay="on"
+                valueLabelDisplay="auto"
                 value={state.times}
                 name="times"
                 onChange={handleChange}
                 step={1}
                 size="large"
-                marks
+                marks={emarks}
                 min={0}
                 max={24}
                 valueLabelFormat={
@@ -209,16 +312,17 @@ function Picker() {
               justify="center"
             >
               <Slider
-                defaultValue={18}
+                defaultValue={[18, 21]}
                 value={state.temp}
                 name="temp"
-                valueLabelDisplay="on"
+                valueLabelDisplay="auto"
                 onChange={handleChange}
-                step={1}
+                step={0.5}
                 size="large"
-                marks
+                marks={pmarks}
                 min={16}
                 max={24}
+                // valueLabelFormat={state.temp[0]}
               />
             </Grid>
             <Grid
@@ -235,7 +339,7 @@ function Picker() {
                   name="day"
                   value={state.day}
                   label="Day"
-                  onChange={handleDevChange}
+                  onChange={handleChange}
                 >
                   <MenuItem value={1}>Weekday</MenuItem>
                   <MenuItem value={2}>Weekend</MenuItem>
@@ -253,7 +357,36 @@ function Picker() {
               <Button onClick={sendData}>Submit</Button>
             </Grid>
           </Grid>
+          {/* <div>
+            <input type="text" value={columns} />
+          </div> */}
+          <div style={{ height: 400, width: "100%" }}>
+            <DataGrid rows={rows} columns={columns} autoHeight="true" />
+          </div>
         </Container>
+
+        {/* <div>
+          <table>
+            <tr>
+              <th>Day</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>Min Temp</th>
+              <th>Max Temp</th>
+            </tr>
+            {trows.map((val, key) => {
+              return (
+                <tr key={key}>
+                  <td>{val.Day}</td>
+                  <td>{val.starttime}</td>
+                  <td>{val.endtime}</td>
+                  <td>{val.mintemp}</td>
+                  <td>{val.max.temp}</td>
+                </tr>
+              );
+            })}
+          </table>
+        </div> */}
       </ThemeProvider>
     </>
   );
