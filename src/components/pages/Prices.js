@@ -140,6 +140,15 @@ function Prices() {
         backgroundColor: "#14d214",
         yAxisID: "y",
       },
+      {
+        label: `Elec Fixed Price`,
+        data: chart?.map((x) => x.ElecFixedPrice),
+        borderWidth: 2,
+        pointRadius: 3,
+        borderColor: "#0b0a0a",
+        backgroundColor: "#0b0a0a",
+        yAxisID: "y",
+      },
     ],
   };
 
@@ -150,6 +159,9 @@ function Prices() {
     },
     responsive: true,
     plugins: {
+      datalabels: {
+        display: false,
+      },
       legend: {
         labels: {
           fontSize: 14,

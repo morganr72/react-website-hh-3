@@ -57,7 +57,7 @@ const inptheme = createTheme({
 function Picker() {
   const [state, setState] = React.useState({
     temp: [18, 22],
-    day: "",
+    day: 1,
     times: [0, 20],
   });
 
@@ -259,6 +259,9 @@ function Picker() {
       .catch((error) => {
         console.error("Error updating data:", error);
       });
+    setState({
+      ...state,
+    });
   };
   return (
     <>

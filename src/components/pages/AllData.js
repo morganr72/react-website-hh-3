@@ -270,6 +270,9 @@ function AllData() {
     },
     responsive: true,
     plugins: {
+      datalabels: {
+        display: false,
+      },
       legend: {
         labels: {
           fontSize: 14,
@@ -318,6 +321,9 @@ function AllData() {
     },
     responsive: true,
     plugins: {
+      datalabels: {
+        display: false,
+      },
       legend: {
         labels: {
           fontSize: 14,

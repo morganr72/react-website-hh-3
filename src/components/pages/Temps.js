@@ -169,6 +169,9 @@ function Temps() {
     maintainAspectRatio: false,
     responsive: true,
     plugins: {
+      datalabels: {
+        display: false,
+      },
       legend: {
         labels: {
           fontSize: 14,

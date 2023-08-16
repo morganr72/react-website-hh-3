@@ -6,6 +6,9 @@ import "chartjs-adapter-moment";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { useAuth0 } from "@auth0/auth0-react";
+import ChartDataLabels from "chartjs-plugin-datalabels";
+import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 import "../Charts.css";
 import {
   Chart as ChartJS,
@@ -22,9 +25,6 @@ import {
   LinearScale,
 } from "chart.js";
 
-import { Bar } from "react-chartjs-2";
-import { Line } from "react-chartjs-2";
-
 ChartJS.register(
   BarController,
   BarElement,
@@ -36,7 +36,8 @@ ChartJS.register(
   Tooltip,
   Title,
   Legend,
-  Colors
+  Colors,
+  ChartDataLabels
 );
 
 function Commands() {
@@ -84,7 +85,7 @@ function Commands() {
   console.log(fmDate);
   console.log(toDate);
   var baseUrl =
-    "https://goyh62l73j.execute-api.us-east-1.amazonaws.com/default/MasterTransactionAPI?premid=" +
+    "https://w6mxmc7f66.execute-api.us-east-1.amazonaws.com/default/CumulativeAPI?premid=" +
     val +
     "&userid= " +
     user.name +
@@ -93,7 +94,7 @@ function Commands() {
     "&todate=" +
     toDate;
   console.log(baseUrl);
-  var apiKey = "vbeLPuegOeCdlx7bouy95nsege1farX5TTbrvL60";
+  var apiKey = "aEcyGu7cHfUvD9d3Iy0oakXes38PlTTGz0hgaN70";
   const [chart, setChart] = useState([]);
 
   const fetchCommands = function () {
@@ -125,72 +126,237 @@ function Commands() {
     datasets: [
       {
         label: `Gas Cost`,
-        type: "line",
+        type: "bar",
         data: chart?.map((x) => x.cGasCost),
-        borderWidth: 2,
-        borderColor: "#ce1b1e",
-        pointRadius: 3,
-        backgroundColor: "#ce1b1e",
+        backgroundColor: "#33cde5",
+        stack: "Stack 0",
+        datalabels: {
+          color: "#0b0a0a",
+          textAlign: "center",
+          font: {
+            weight: "bold",
+            size: 14,
+          },
+          formatter: function (value, context) {
+            if (value === 0) {
+              return "";
+            } else {
+              return (
+                "..and Gas cost £" + Number.parseFloat(value).toFixed(2) + ".."
+              );
+            }
+          },
+        },
       },
       {
         label: `HP Cost`,
-        type: "line",
+        type: "bar",
         data: chart?.map((x) => x.cHPCost),
-        borderWidth: 2,
-        borderColor: "#2613cc",
-        pointRadius: 3,
-        backgroundColor: "#2613cc",
+        backgroundColor: "#f4d4a0",
+        stack: "Stack 0",
+        datalabels: {
+          color: "#0b0a0a",
+          textAlign: "center",
+          font: {
+            weight: "bold",
+            size: 14,
+          },
+          formatter: function (value, context) {
+            return (
+              "In this period Heat Pump Cost\n£" +
+              Number.parseFloat(value).toFixed(2) +
+              ".."
+            );
+          },
+        },
+        // borderWidth: 2,
+        // borderColor: "#2613cc",
+        // pointRadius: 3,
+        // backgroundColor: "#2613cc",
       },
       {
         label: `Total Cost`,
-        type: "line",
+        type: "bar",
         data: chart?.map((x) => x.cTotalCost),
-        borderWidth: 2,
-        borderColor: "#14d214",
-        pointRadius: 3,
-        backgroundColor: "#14d214",
+        backgroundColor: "#f48183",
+        stack: "Stack 1",
+        datalabels: {
+          color: "#0b0a0a",
+          font: {
+            weight: "bold",
+            size: 14,
+          },
+          textAlign: "center",
+          formatter: function (value, context) {
+            return (
+              ".. so Total cost was\n£" + Number.parseFloat(value).toFixed(2)
+            );
+          },
+        },
+        // borderWidth: 2,
+        // borderColor: "#14d214",
+        // pointRadius: 3,
+        // backgroundColor: "#14d214",
+      },
+
+      {
+        label: `Full HP Cost`,
+        type: "bar",
+        data: chart?.map((x) => x.cEFPCost),
+        backgroundColor: "#f4d4a0",
+        stack: "Stack 3",
+        datalabels: {
+          color: "#0b0a0a",
+          font: {
+            weight: "bold",
+            size: 14,
+          },
+          textAlign: "center",
+          formatter: function (value, context) {
+            return (
+              "HP only cost would have been\n£" +
+              Number.parseFloat(value).toFixed(2)
+            );
+          },
+        },
+        // borderWidth: 2,
+        // borderColor: "#6adced",
+        // pointRadius: 3,
+        // backgroundColor: "#6adced",
       },
       {
         label: `HP Gas Equivalent`,
-        type: "line",
-        data: chart?.map((x) => x.cHPGasEquiv),
-        borderWidth: 2,
-        borderColor: "#68015a",
-        pointRadius: 3,
-        backgroundColor: "#68015a",
+        type: "bar",
+        data: chart?.map((x) => x.cHPGasEquiv + x.cGasCost),
+        backgroundColor: "#33cde5",
+        stack: "Stack 2",
+        datalabels: {
+          color: "#0b0a0a",
+          font: {
+            weight: "bold",
+            size: 14,
+          },
+          textAlign: "center",
+          formatter: function (value, context) {
+            return (
+              "Gas only cost would have been\n£" +
+              Number.parseFloat(value).toFixed(2)
+            );
+          },
+        },
+        // borderWidth: 2,
+        // borderColor: "#68015a",
+        // pointRadius: 3,
+        // backgroundColor: "#68015a",
       },
       {
-        label: `Savings`,
-        type: "line",
-        data: chart?.map((x) => x.cSaving),
-        borderWidth: 2,
-        borderColor: "#6adced",
-        pointRadius: 3,
-        backgroundColor: "#6adced",
+        label: ``,
+        type: "bar",
+        data: chart?.map((x) => x.cTotalCost),
+        backgroundColor: "rgba(0,0,0,0.0)",
+        datalabels: {
+          color: "rgba(0,0,0,0.0)",
+          textAlign: "center",
+        },
+        stack: "Stack 5",
+        // borderWidth: 2,
+        // borderColor: "#6adced",
+        // pointRadius: 3,
+        // backgroundColor: "#6adced",
+      },
+      {
+        label: `HP Savings`,
+        type: "bar",
+        backgroundColor: "#14d214",
+        stack: "Stack 5",
+        data: chart?.map((x) => 0 - (x.cTotalCost - x.cEFPCost)),
+        datalabels: {
+          color: "#0b0a0a",
+          font: {
+            weight: "bold",
+            size: 14,
+          },
+          textAlign: "center",
+          formatter: function (value, context) {
+            return (
+              "Savings against HP Only\n £" +
+              Number.parseFloat(value).toFixed(2)
+            );
+          },
+        },
+        // borderWidth: 2,
+        // borderColor: "#6adced",
+        // pointRadius: 3,
+        // backgroundColor: "#6adced",
+      },
+      {
+        label: ``,
+        type: "bar",
+        data: chart?.map((x) => x.cTotalCost),
+        backgroundColor: "rgba(0,0,0,0.0)",
+        datalabels: {
+          color: "rgba(0,0,0,0.0)",
+          textAlign: "center",
+        },
+        stack: "Stack 4",
+        // borderWidth: 2,
+        // borderColor: "#6adced",
+        // pointRadius: 3,
+        // backgroundColor: "#6adced",
+      },
+      {
+        label: `Gas Savings`,
+        type: "bar",
+        backgroundColor: "#14d214",
+        stack: "Stack 4",
+        data: chart?.map((x) => 0 - x.cSaving),
+        datalabels: {
+          color: "#0b0a0a",
+          font: {
+            weight: "bold",
+            size: 14,
+          },
+          textAlign: "center",
+          formatter: function (value, context) {
+            return (
+              "Savings against Gas Only\n£" +
+              Number.parseFloat(value).toFixed(2)
+            );
+          },
+        },
+        // borderWidth: 2,
+        // borderColor: "#6adced",
+        // pointRadius: 3,
+        // backgroundColor: "#6adced",
       },
     ],
   };
 
   var options = {
     maintainAspectRatio: false,
+    tooltips: { enabled: false },
+    events: [],
     interaction: {
       mode: "index",
     },
     responsive: true,
     plugins: {
       legend: {
+        display: false,
         labels: {
           fontSize: 14,
         },
       },
       title: {
-        display: true,
+        display: false,
         text: "Costs Compared",
       },
     },
     scales: {
       x: {
         type: "time",
+        stacked: true,
+        display: false,
         time: {
           unit: "hour",
           displayFormats: {
@@ -200,12 +366,17 @@ function Commands() {
       },
       y: {
         type: "linear",
-
         display: true,
+        stacked: true,
+        ticks: {
+          callback: function (value, context) {
+            return "£" + Number.parseFloat(value).toFixed(2);
+          },
+        },
         position: "left",
         // stacked: true,
         title: {
-          display: true,
+          display: false,
           text: "£",
           minRotation: 90,
         },
