@@ -37,10 +37,9 @@ function Navbar() {
 
     return (
       isAuthenticated && (
-        <div className="nav-button">
-          {/* <img src={user.picture} alt={user.name} /> */}
+        <button className="nav-button">
           <p>{user.email}</p>
-        </div>
+        </button>
       )
     );
   };
@@ -126,8 +125,12 @@ function Navbar() {
             <li className="nav-item">
               <LoginButton />
             </li>
-            <LogoutButton />
-            <Profile />
+            <li className="nav-item">
+              <LogoutButton />
+            </li>
+            <li className="nav-item">
+              <Profile />
+            </li>
           </ul>
           {/* {button && <Button buttonStyle="btn--outline">SIGN UP</Button>} */}
         </div>

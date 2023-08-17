@@ -284,7 +284,11 @@ function Picker() {
             </Grid> */}
             <Grid
               item
-              xs={6}
+              xs={12}
+              sm={10}
+              md={8}
+              lg={6}
+              xl={6}
               container
               direction="row"
               alignItems="flex-end"
@@ -308,7 +312,11 @@ function Picker() {
             </Grid>
             <Grid
               item
-              xs={2}
+              xs={8}
+              sm={6}
+              md={4}
+              lg={2}
+              xl={2}
               container
               direction="row"
               alignItems="flex-end"
@@ -330,7 +338,11 @@ function Picker() {
             </Grid>
             <Grid
               item
-              xs={2}
+              xs={8}
+              sm={6}
+              md={4}
+              lg={2}
+              xl={2}
               container
               direction="row"
               // alignItems="flex-end"
