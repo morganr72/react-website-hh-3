@@ -35,10 +35,9 @@ let displayday = "Weekday";
 //   },
 // ];
 var tbldata = [];
-let rows = [];
+
 let trows = [];
-let trowsf = [];
-let columns = [];
+
 const inptheme = createTheme({
   components: {
     // Name of the component
@@ -200,7 +199,7 @@ function Picker() {
   console.log("Rows", rows);
   const sendData = function () {
     counter++;
-    if (state.day == 1) {
+    if (state.day === 1) {
       displayday = "Weekday";
     } else {
       displayday = "Weekend";
@@ -266,7 +265,7 @@ function Picker() {
   return (
     <>
       <div class="godown-60" id="godown"></div>
-      <div>
+      {/* <div>
         <label class="CboxLab">
           {"UserID "}
           <select value={val} onChange={handleDevChange}>
@@ -275,10 +274,10 @@ function Picker() {
             <option value="P100003">Home 2</option>
           </select>
         </label>
-      </div>
+      </div> */}
       <ThemeProvider theme={inptheme}>
         <Container>
-          <Grid container spacing={10}>
+          <Grid container spacing={5} alignItems="center">
             {/* <Grid item x={2}>
               <Button>{value}</Button>
             </Grid> */}
@@ -286,13 +285,35 @@ function Picker() {
               item
               xs={12}
               sm={10}
-              md={8}
-              lg={6}
-              xl={6}
+              md={10}
+              lg={10}
+              xl={10}
               container
+              direction="row"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <label class="CboxLab">
+                {"UserID "}
+                <select value={val} onChange={handleDevChange}>
+                  <option value="P100001">Office</option>
+                  <option value="P100002">Home 1</option>
+                  <option value="P100003">Home 2</option>
+                </select>
+              </label>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              sm={10}
+              md={7}
+              lg={7}
+              xl={7}
+              // container
               direction="row"
               alignItems="flex-end"
               justify="center"
+              justifyContent="center"
             >
               <Slider
                 defaultValue={[0, 24]}
@@ -317,7 +338,7 @@ function Picker() {
               md={4}
               lg={2}
               xl={2}
-              container
+              // container
               direction="row"
               alignItems="flex-end"
               justify="center"
@@ -343,7 +364,7 @@ function Picker() {
               md={4}
               lg={2}
               xl={2}
-              container
+              // container
               direction="row"
               // alignItems="flex-end"
               justify="center"
@@ -363,10 +384,15 @@ function Picker() {
             </Grid>
             <Grid
               item
-              xs={2}
-              container
+              xs={8}
+              sm={6}
+              md={4}
+              lg={2}
+              xl={1}
+              // container
+              justifyContent="center"
               direction="row"
-              // alignItems="flex-end"
+              alignItems="flex-end"
               justify="center"
             >
               <Button onClick={sendData}>Submit</Button>

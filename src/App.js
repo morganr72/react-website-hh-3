@@ -7,6 +7,7 @@ import CostCompare from "./components/pages/CostCompare";
 import AllData from "./components/pages/AllData";
 import Prices from "./components/pages/Prices";
 import InputProfile from "./components/pages/InputProfile";
+import ElecData from "./components/pages/ElecData";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -71,6 +72,7 @@ function App() {
           <Route path="/CostCompare" element={<CostCompare />} />
           <Route path="/AllData" element={<AllData />} />
           <Route path="/Prices" element={<Prices />} />
+          <Route path="/ElecData" element={<ElecData />} />
           <Route path="/InputProfile" element={<InputProfile />} />
         </Routes>
       </Router>

@@ -228,7 +228,7 @@ function Prices() {
           </label>
         </div>
         <div>
-          <label class="CboxLab">
+          <label className="CboxLab">
             {"UserID "}
             <select value={val} onChange={handleChange}>
               <option value="P100001">Office</option>
@@ -238,7 +238,7 @@ function Prices() {
           </label>
         </div>
         <div>
-          <button className="button-1" type="button" onClick={fetchTemps}>
+          <button className="CboxLab" type="button" onClick={fetchTemps}>
             Refresh
           </button>
         </div>

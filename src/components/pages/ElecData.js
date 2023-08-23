@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import format from "date-fns/format";
 import { addDays } from "date-fns";
 import { DateRange } from "react-date-range";
-import "chartjs-adapter-moment";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -22,33 +21,26 @@ import {
   PointElement,
   LinearScale,
 } from "chart.js";
-
+import { Line } from "react-chartjs-2";
 import { Bar } from "react-chartjs-2";
-// import { Line } from "react-chartjs-2";
 
 ChartJS.register(
-  BarController,
-  BarElement,
   CategoryScale,
+  LinearScale,
   LineElement,
   PointElement,
-  Filler,
-  LinearScale,
-  TimeScale,
-  Tooltip,
   Title,
   Legend,
   Colors
 );
 
-function AllData() {
+function ElecData() {
   const { user } = useAuth0();
-
   const [val, setValue] = React.useState("P100001");
   const handleChange = (event) => {
     setValue(event.target.value);
   };
-
+  // date state
   const [range, setRange] = useState([
     {
       startDate: new Date(),
@@ -82,26 +74,31 @@ function AllData() {
     }
   };
 
-  console.log("user id:", user.name);
+  console.log(range);
   var fmDate = format(range[0].startDate, "MM-dd-yyyy");
   var toDate = format(range[0].endDate, "MM-dd-yyyy");
-  //   console.log(fmDate);
-  //   console.log(toDate);
+  console.log(fmDate);
+  console.log(toDate);
   var baseUrl =
-    "https://goyh62l73j.execute-api.us-east-1.amazonaws.com/default/MasterTransactionAPI?premid=" +
-    val +
-    "&userid= " +
-    user.name +
+    "https://i5kbcm6m4j.execute-api.us-east-1.amazonaws.com/default/ElecIndData?fmdate=" +
+    fmDate +
+    "&todate=" +
+    toDate;
+  var apiKey = "AxKV7WxL523i9WL0EQLRZ3d7tjHeJAjD6eeqZyAN";
+
+  var baseUrl1 =
+    "https://goyh62l73j.execute-api.us-east-1.amazonaws.com/default/MasterTransactionAPI?premid=P100001" +
+    "&userid= rmorganml@gmail.com" +
     "&fmdate=" +
     fmDate +
     "&todate=" +
     toDate;
-  console.log(baseUrl);
-  var apiKey = "vbeLPuegOeCdlx7bouy95nsege1farX5TTbrvL60";
+  var apiKey1 = "vbeLPuegOeCdlx7bouy95nsege1farX5TTbrvL60";
 
   const [chart, setChart] = useState([]);
+  const [chart1, setChart1] = useState([]);
 
-  const fetchCommands = function () {
+  const fetchTemps = function () {
     fetch(`${baseUrl}`, {
       method: `GET`,
       headers: {
@@ -114,8 +111,27 @@ function AllData() {
     })
       .then((response) => {
         response.json().then((json) => {
-          console.log(json);
+          // console.log(json);
           setChart(json.content);
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    fetch(`${baseUrl1}`, {
+      method: `GET`,
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": `${apiKey1}`,
+        // 'Access-Control-Allow-Origin': '*',
+        // 'Access-Control-Allow-Methods': 'POST, PUT, GET, OPTIONS',
+        // 'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'
+      },
+    })
+      .then((response) => {
+        response.json().then((json) => {
+          // console.log(json);
+          setChart1(json.content);
         });
       })
       .catch((error) => {
@@ -123,142 +139,99 @@ function AllData() {
       });
   };
 
-  console.log("chart", chart);
+  // console.log("chart", chart);
 
   var data = {
     labels: chart?.map((x) => x.DateTime),
     datasets: [
+      //   {
+      //     label: `Demand`,
+      //     data: chart?.map((x) => x.DEMAND),
+      //     borderWidth: 2,
+      //     borderColor: "#ce1b1e",
+      //     pointRadius: 3,
+      //     backgroundColor: "#ce1b1e",
+      //     yAxisID: "y",
+      //   },
       {
-        label: `Expected Temp`,
-        type: "line",
-        data: chart?.map((x) => x.CalcInTemp),
-        pointRadius: 3,
-        borderColor: "#0b0a0a",
-        backgroundColor: "#0b0a0a",
-        yAxisID: "y1",
-      },
-
-      {
-        label: `External Temp`,
-        type: "line",
-        data: chart?.map((x) => x.ForecastTemp),
-        pointRadius: 3,
-        borderColor: "#ce1b1e",
-        backgroundColor: "#ce1b1e",
-        yAxisID: "y1",
+        label: `Gas`,
+        type: "bar",
+        data: chart?.map((x) => parseInt(x.CCGT, 10) + parseInt(x.OCGT, 10)),
+        backgroundColor: "#33cde5",
+        stack: "Stack 1",
       },
       {
-        label: `Tank Volume`,
-        type: "line",
-        data: chart?.map((x) => x.RunningVol),
-        pointRadius: 3,
-        borderColor: "#68015a",
-        backgroundColor: "#68015a",
-        yAxisID: "y",
-      },
-      {
-        label: `Desired Temp Range`,
-        pointHitRadius: 1,
-        type: "line",
-        data: chart?.map((x) => x.DesTempLow),
-        pointRadius: 1,
-        fill: "+1",
-        borderColor: "#f6ca83",
-        backgroundColor: "#f6ca83",
-        yAxisID: "y1",
-      },
-
-      {
-        label: `Desired Temp High`,
-        pointHitRadius: 1,
-        type: "line",
-        data: chart?.map((x) => x.DesTempHigh),
-        pointRadius: 1,
-        fill: false,
-        borderColor: "#14d214",
+        label: `Wind`,
+        type: "bar",
+        data: chart?.map((x) => parseInt(x.WIND, 10)),
         backgroundColor: "#14d214",
-        yAxisID: "y1",
+        stack: "Stack 1",
       },
       {
-        label: `Water Demand`,
+        label: `Embedded Wind`,
         type: "bar",
-        data: chart?.map((x) => x.WaterDemand),
-        borderColor: "#6adced",
-        barThickness: "flex",
-        backgroundColor: "#6adced",
-        yAxisID: "y",
-      },
-    ],
-  };
-
-  var data1 = {
-    labels: chart?.map((x) => x.DateTime),
-    datasets: [
-      {
-        label: `Elec Price`,
-        type: "line",
-        data: chart?.map((x) => x.ElecUnitPrice),
-        borderWidth: 2,
-        borderColor: "#ce1b1e",
-        pointRadius: 3,
-        backgroundColor: "#ce1b1e",
-        yAxisID: "y1",
-      },
-      {
-        label: `COP Adjusted Price`,
-        type: "line",
-        data: chart?.map((x) => x.copprice),
-        borderWidth: 2,
-        pointRadius: 3,
-        borderColor: "#2613cc",
-        backgroundColor: "#2613cc",
-        yAxisID: "y1",
-      },
-      {
-        label: `Gas Price`,
-        data: chart?.map((x) => x.GasEffUnitPrice),
-        type: "line",
-        borderWidth: 2,
-        pointRadius: 3,
-        borderColor: "#14d214",
-        backgroundColor: "#14d214",
-        yAxisID: "y1",
-      },
-      {
-        label: `Gas Heating`,
-        type: "bar",
-        data: chart?.map((x) => x.GasHeat),
-        barThickness: "flex",
-        borderColor: "#68015a",
-        backgroundColor: "#68015a",
-        yAxisID: "y",
-      },
-      {
-        label: `Gas Water`,
-        type: "bar",
-        data: chart?.map((x) => x.GasWater),
-        barThickness: "flex",
-        borderColor: "#f49f16",
-        backgroundColor: "#f49f16",
-        yAxisID: "y",
-      },
-      {
-        label: `HP Heating`,
-        type: "bar",
-        data: chart?.map((x) => x.COPHPHeat),
-        barThickness: "flex",
-        borderColor: "#a1ac02",
-        backgroundColor: "#a1ac02",
-        yAxisID: "y",
-      },
-      {
-        label: `HP Water`,
-        type: "bar",
-        data: chart?.map((x) => x.COPHPWater),
-        barThickness: "flex",
-        borderColor: "#04570f",
+        data: chart?.map((x) => parseInt(x.EMBEDWIND, 10)),
         backgroundColor: "#04570f",
-        yAxisID: "y",
+        stack: "Stack 1",
+      },
+      {
+        label: `Embedded Solar`,
+        type: "bar",
+        data: chart?.map((x) => parseInt(x.EMBEDSOLAR, 10)),
+        backgroundColor: "#e0ef08",
+        stack: "Stack 1",
+      },
+      {
+        label: `Nuclear`,
+        type: "bar",
+        data: chart?.map((x) => parseInt(x.NUCLEAR, 10)),
+        backgroundColor: "#a1ac02",
+        stack: "Stack 1",
+      },
+      {
+        label: `Coal`,
+        type: "bar",
+        data: chart?.map((x) => parseInt(x.COAL, 10)),
+        backgroundColor: "#68015a",
+        stack: "Stack 1",
+      },
+      {
+        label: `Biomass`,
+        type: "bar",
+        data: chart?.map((x) => parseInt(x.BIOMASS, 10)),
+        backgroundColor: "#f6ca83",
+        stack: "Stack 1",
+      },
+
+      {
+        label: `Other`,
+        type: "bar",
+        data: chart?.map(
+          (x) =>
+            parseInt(x.PS, 10) +
+            parseInt(x.NPSHYD, 10) +
+            parseInt(x.OTHER, 10) +
+            parseInt(x.OIL, 10)
+        ),
+        backgroundColor: "#3e3d3d",
+        stack: "Stack 1",
+      },
+      {
+        label: `Imports`,
+        type: "bar",
+        data: chart?.map(
+          (x) =>
+            parseInt(x.INTFR, 10) +
+            parseInt(x.INTIRL, 10) +
+            parseInt(x.INTNED, 10) +
+            parseInt(x.INTEW, 10) +
+            parseInt(x.INTNEM, 10) +
+            parseInt(x.INTELEC, 10) +
+            parseInt(x.INTIFA2, 10) +
+            parseInt(x.INTNSL, 10)
+        ),
+        backgroundColor: "#0b0a0a",
+        stack: "Stack 1",
       },
     ],
   };
@@ -280,7 +253,7 @@ function AllData() {
       },
       title: {
         display: true,
-        text: "Temperatures and Water",
+        text: "Elec Industry Data",
       },
     },
     scales: {
@@ -299,19 +272,26 @@ function AllData() {
         position: "left",
         title: {
           display: true,
-          text: "kWh",
-        },
-      },
-      y1: {
-        type: "linear",
-        display: true,
-        position: "right",
-        title: {
-          display: true,
-          text: "Degress C",
+          text: "MWh",
         },
       },
     },
+  };
+
+  var data1 = {
+    labels: chart1?.map((x) => x.DateTime),
+    datasets: [
+      {
+        label: `Elec Price`,
+        type: "bar",
+        data: chart1?.map((x) => x.ElecUnitPrice),
+        borderWidth: 2,
+        borderColor: "#ce1b1e",
+        pointRadius: 3,
+        backgroundColor: "#ce1b1e",
+        // yAxisID: "y",
+      },
+    ],
   };
 
   var options1 = {
@@ -331,7 +311,7 @@ function AllData() {
       },
       title: {
         display: true,
-        text: "Prices and Commands",
+        text: "Elec Industry Data",
       },
     },
     scales: {
@@ -350,16 +330,7 @@ function AllData() {
         position: "left",
         title: {
           display: true,
-          text: "kWh",
-        },
-      },
-      y1: {
-        type: "linear",
-        display: true,
-        position: "right",
-        title: {
-          display: true,
-          text: "pence",
+          text: "MWh",
         },
       },
     },
@@ -368,7 +339,6 @@ function AllData() {
   return (
     <>
       <div id="block_container">
-        {/* <label>{user.name}</label> */}
         <div className="calendarWrap">
           <label class="CboxLab">
             {"Select Dates "}
@@ -397,29 +367,24 @@ function AllData() {
           </label>
         </div>
         <div>
-          <label className="CboxLab">
-            {"Device Id "}
-            <select value={val} onChange={handleChange}>
-              <option value="P100001">Office</option>
-              <option value="P100002">Home 1</option>
-              <option value="P100003">Home 2</option>
-            </select>
-          </label>
-        </div>
-        <div>
-          <button className="CboxLab" type="button" onClick={fetchCommands}>
+          <button className="CboxLab" type="button" onClick={fetchTemps}>
             Refresh
           </button>
         </div>
       </div>
       <div>
-        <Bar height={400} data={data} options={options} />
+        <Line height={400} data={data} options={options} />
       </div>
       <div>
-        <Bar height={400} data={data1} options={options1} />
+        <Line height={400} data={data1} options={options1} />
       </div>
+      {/* <body>
+        <canvas id="chartJSContainer" width="600" height="400"></canvas>
+        <button id="myBtn">Hide dataset</button>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.js"></script>
+      </body> */}
     </>
   );
 }
 
-export default AllData;
+export default ElecData;

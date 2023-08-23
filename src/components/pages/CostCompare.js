@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useId, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import format from "date-fns/format";
 import { addDays } from "date-fns";
 import { DateRange } from "react-date-range";
@@ -8,7 +8,7 @@ import "react-date-range/dist/theme/default.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { Bar } from "react-chartjs-2";
-import { Line } from "react-chartjs-2";
+// import { Line } from "react-chartjs-2";
 import "../Charts.css";
 import {
   Chart as ChartJS,
@@ -418,7 +418,7 @@ function Commands() {
           </label>
         </div>
         <div>
-          <label class="CboxLab">
+          <label className="CboxLab">
             {"Device Id "}
             <select value={val} onChange={handleChange}>
               <option value="P100001">Office</option>
@@ -428,7 +428,7 @@ function Commands() {
           </label>
         </div>
         <div>
-          <button className="button-1" type="button" onClick={fetchCommands}>
+          <button className="CboxLab" type="button" onClick={fetchCommands}>
             Refresh
           </button>
         </div>

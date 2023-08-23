@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useId, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import format from "date-fns/format";
 import { addDays } from "date-fns";
 import { DateRange } from "react-date-range";
@@ -221,7 +221,7 @@ function Temps() {
       </div>
       <div id="block_container">
         <div className="calendarWrap">
-          <label class="CboxLab">
+          <label className="CboxLab">
             {"Select Dates "}
             <input
               value={`${format(range[0].startDate, "MM/dd/yyyy")}-${format(
@@ -248,7 +248,7 @@ function Temps() {
           </label>
         </div>
         <div>
-          <label class="CboxLab">
+          <label className="CboxLab">
             {"UserID "}
             <select value={val} onChange={handleChange}>
               <option value="P100001">Office</option>
@@ -258,7 +258,7 @@ function Temps() {
           </label>
         </div>
         <div>
-          <button className="button-1" type="button" onClick={fetchTemps}>
+          <button className="CboxLab" type="button" onClick={fetchTemps}>
             Refresh
           </button>
         </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
-import { Button } from "./Button";
+// import { Button } from "./Button";
 import { useAuth0 } from "@auth0/auth0-react";
 
 function Navbar() {
@@ -45,7 +45,7 @@ function Navbar() {
   };
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
-
+  console.log(button);
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
@@ -113,13 +113,22 @@ function Navbar() {
                 Input Profile
               </Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link
                 to="/Prices"
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
                 Prices
+              </Link>
+            </li> */}
+            <li className="nav-item">
+              <Link
+                to="/ElecData"
+                className="nav-links"
+                onClick={closeMobileMenu}
+              >
+                Elec Data
               </Link>
             </li>
             <li className="nav-item">
