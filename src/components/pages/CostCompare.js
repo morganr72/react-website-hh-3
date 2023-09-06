@@ -40,7 +40,7 @@ ChartJS.register(
   ChartDataLabels
 );
 
-function Commands() {
+function CostCompare() {
   const { user } = useAuth0();
   const [val, setValue] = React.useState("P100001");
   const handleChange = (event) => {
@@ -49,8 +49,8 @@ function Commands() {
 
   const [range, setRange] = useState([
     {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 7),
+      startDate: addDays(new Date(), -5),
+      endDate: new Date(),
       key: "selection",
     },
   ]);
@@ -118,7 +118,7 @@ function Commands() {
         console.log(error);
       });
   };
-
+  useEffect(() => fetchCommands(), []);
   console.log("chart", chart);
 
   var data = {
@@ -437,4 +437,4 @@ function Commands() {
   );
 }
 
-export default Commands;
+export default CostCompare;
