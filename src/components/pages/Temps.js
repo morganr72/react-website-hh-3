@@ -33,15 +33,17 @@ function Temps() {
   const [val, setValue] = React.useState("P100001");
   const handleChange = (event) => {
     setValue(event.target.value);
+    fetchTemps();
   };
   // date state
   const [range, setRange] = useState([
     {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 7),
+      startDate: addDays(new Date(), -2),
+      endDate: new Date(),
       key: "selection",
     },
   ]);
+
   const [open, setOpen] = useState(false);
 
   // get the target element to toggle
@@ -116,6 +118,7 @@ function Temps() {
   };
 
   // console.log("chart", chart);
+  useEffect(() => fetchTemps(), []);
 
   var data = {
     labels: chart?.map((x) => x.DateTime),

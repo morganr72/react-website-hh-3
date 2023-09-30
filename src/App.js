@@ -8,6 +8,8 @@ import AllData from "./components/pages/AllData";
 import Prices from "./components/pages/Prices";
 import InputProfile from "./components/pages/InputProfile";
 import ElecData from "./components/pages/ElecData";
+import CreateCust from "./components/pages/CreateCust";
+import Logs from "./components/pages/Logs";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -74,6 +76,8 @@ function App() {
           <Route path="/Prices" element={<Prices />} />
           <Route path="/ElecData" element={<ElecData />} />
           <Route path="/InputProfile" element={<InputProfile />} />
+          <Route path="/CreateCust" element={<CreateCust />} />
+          <Route path="/Logs" element={<Logs />} />
         </Routes>
       </Router>
     </>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 // import { Button } from "./Button";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -43,6 +44,120 @@ function Navbar() {
       )
     );
   };
+
+  const ElecLink = () => {
+    const { isAuthenticated, isLoading } = useAuth0();
+
+    if (isLoading) {
+      return <div>Loading ...</div>;
+    }
+
+    return (
+      isAuthenticated && (
+        <Link to="/ElecData" className="nav-links" onClick={closeMobileMenu}>
+          Elec Data
+        </Link>
+      )
+    );
+  };
+  // const TempHistory = () => {
+  //   const { isAuthenticated, isLoading } = useAuth0();
+
+  //   if (isLoading) {
+  //     return <div>Loading ...</div>;
+  //   }
+
+  //   return (
+  //     isAuthenticated && (
+  //       <NavLink to="/Temps" className="nav-links" onClick={closeMobileMenu}>
+  //         Temp History
+  //       </NavLink>
+  //     )
+  //   );
+  // };
+  const CreateCust = () => {
+    const { isAuthenticated, isLoading } = useAuth0();
+
+    if (isLoading) {
+      return <div>Loading ...</div>;
+    }
+
+    return (
+      isAuthenticated && (
+        <NavLink
+          to="/CreateCust"
+          className="nav-links"
+          onClick={closeMobileMenu}
+        >
+          Create Cust
+        </NavLink>
+      )
+    );
+  };
+  const Logs = () => {
+    const { isAuthenticated, isLoading } = useAuth0();
+
+    if (isLoading) {
+      return <div>Loading ...</div>;
+    }
+
+    return (
+      isAuthenticated && (
+        <NavLink to="/Logs" className="nav-links" onClick={closeMobileMenu}>
+          Logs
+        </NavLink>
+      )
+    );
+  };
+  const InputProfile = () => {
+    const { isAuthenticated, isLoading } = useAuth0();
+
+    if (isLoading) {
+      return <div>Loading ...</div>;
+    }
+
+    return (
+      isAuthenticated && (
+        <Link
+          to="/InputProfile"
+          className="nav-links"
+          onClick={closeMobileMenu}
+        >
+          Input Profile
+        </Link>
+      )
+    );
+  };
+  const AllData = () => {
+    const { isAuthenticated, isLoading } = useAuth0();
+
+    if (isLoading) {
+      return <div>Loading ...</div>;
+    }
+
+    return (
+      isAuthenticated && (
+        <Link to="/AllData" className="nav-links" onClick={closeMobileMenu}>
+          All Data
+        </Link>
+      )
+    );
+  };
+  // const CostCompare = () => {
+  //   const { isAuthenticated, isLoading } = useAuth0();
+
+  //   if (isLoading) {
+  //     return <div>Loading ...</div>;
+  //   }
+
+  //   return (
+  //     isAuthenticated && (
+  //       <Link to="/CostCompare" className="nav-links" onClick={closeMobileMenu}>
+  //         Cost Compare
+  //       </Link>
+  //     )
+  //   );
+  // };
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
   console.log(button);
@@ -81,55 +196,27 @@ function Navbar() {
                 Home
               </Link>
             </li> */}
-            <li className="nav-item">
-              <Link to="/Temps" className="nav-links" onClick={closeMobileMenu}>
-                Temp History
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                to="/AllData"
-                className="nav-links"
-                onClick={closeMobileMenu}
-              >
-                All Data
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                to="/CostCompare"
-                className="nav-links"
-                onClick={closeMobileMenu}
-              >
-                Cost Compare
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                to="/InputProfile"
-                className="nav-links"
-                onClick={closeMobileMenu}
-              >
-                Input Profile
-              </Link>
-            </li>
             {/* <li className="nav-item">
-              <Link
-                to="/Prices"
-                className="nav-links"
-                onClick={closeMobileMenu}
-              >
-                Prices
-              </Link>
+              <TempHistory />
             </li> */}
             <li className="nav-item">
-              <Link
-                to="/ElecData"
-                className="nav-links"
-                onClick={closeMobileMenu}
-              >
-                Elec Data
-              </Link>
+              <AllData />
+            </li>
+            {/* <li className="nav-item">
+              <CostCompare />
+            </li> */}
+            <li className="nav-item">
+              <InputProfile />
+            </li>
+            <li className="nav-item">
+              <CreateCust />
+            </li>
+            <li className="nav-item">
+              <Logs />
+            </li>
+
+            <li className="nav-item">
+              <ElecLink />
             </li>
             <li className="nav-item">
               <LoginButton />

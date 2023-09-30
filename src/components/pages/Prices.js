@@ -37,8 +37,8 @@ function Prices() {
   // date state
   const [range, setRange] = useState([
     {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 7),
+      startDate: addDays(new Date(), -2),
+      endDate: new Date(),
       key: "selection",
     },
   ]);
@@ -107,7 +107,7 @@ function Prices() {
         console.log(error);
       });
   };
-
+  useEffect(() => fetchTemps(), []);
   // console.log("chart", chart);
 
   var data = {

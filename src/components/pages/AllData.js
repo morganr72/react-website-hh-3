@@ -51,8 +51,8 @@ function AllData() {
 
   const [range, setRange] = useState([
     {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 7),
+      startDate: addDays(new Date(), -2),
+      endDate: new Date(),
       key: "selection",
     },
   ]);
@@ -124,6 +124,7 @@ function AllData() {
   };
 
   console.log("chart", chart);
+  useEffect(() => fetchCommands(), []);
 
   var data = {
     labels: chart?.map((x) => x.DateTime),

@@ -43,8 +43,8 @@ function ElecData() {
   // date state
   const [range, setRange] = useState([
     {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 7),
+      startDate: addDays(new Date(), -2),
+      endDate: new Date(),
       key: "selection",
     },
   ]);
@@ -139,6 +139,8 @@ function ElecData() {
       });
   };
 
+  useEffect(() => fetchTemps(), []);
+
   // console.log("chart", chart);
 
   var data = {
@@ -156,28 +158,28 @@ function ElecData() {
       {
         label: `Gas`,
         type: "bar",
-        data: chart?.map((x) => parseInt(x.CCGT, 10) + parseInt(x.OCGT, 10)),
+        data: chart?.map((x) => parseInt(x.CCGT, 10)),
         backgroundColor: "#33cde5",
         stack: "Stack 1",
       },
       {
-        label: `Wind`,
+        label: `Offshore Wind`,
         type: "bar",
-        data: chart?.map((x) => parseInt(x.WIND, 10)),
-        backgroundColor: "#14d214",
+        data: chart?.map((x) => parseInt(x.OFFSHORE_WIND, 10)),
+        backgroundColor: "#ce1b1e",
         stack: "Stack 1",
       },
       {
-        label: `Embedded Wind`,
+        label: `Onshore Wind`,
         type: "bar",
-        data: chart?.map((x) => parseInt(x.EMBEDWIND, 10)),
+        data: chart?.map((x) => parseInt(x.ONSHORE_WIND, 10)),
         backgroundColor: "#04570f",
         stack: "Stack 1",
       },
       {
-        label: `Embedded Solar`,
+        label: `Solar`,
         type: "bar",
-        data: chart?.map((x) => parseInt(x.EMBEDSOLAR, 10)),
+        data: chart?.map((x) => parseInt(x.SOLAR, 10)),
         backgroundColor: "#e0ef08",
         stack: "Stack 1",
       },
@@ -208,16 +210,13 @@ function ElecData() {
         type: "bar",
         data: chart?.map(
           (x) =>
-            parseInt(x.PS, 10) +
-            parseInt(x.NPSHYD, 10) +
-            parseInt(x.OTHER, 10) +
-            parseInt(x.OIL, 10)
+            parseInt(x.PS, 10) + parseInt(x.OTHER, 10) + parseInt(x.OIL, 10)
         ),
-        backgroundColor: "#3e3d3d",
+        backgroundColor: "#b3b0b0",
         stack: "Stack 1",
       },
       {
-        label: `Imports`,
+        label: `Net Imports/Exports`,
         type: "bar",
         data: chart?.map(
           (x) =>
@@ -260,6 +259,8 @@ function ElecData() {
       x: {
         type: "time",
         time: {
+          min: fmDate,
+          max: toDate,
           unit: "hour",
           displayFormats: {
             hour: "dd MMM D HH:mm",
@@ -325,12 +326,16 @@ function ElecData() {
         },
       },
       y: {
+        ticks: {
+          padding: 18,
+        },
         type: "linear",
         display: true,
         position: "left",
+
         title: {
           display: true,
-          text: "MWh",
+          text: "pence",
         },
       },
     },
