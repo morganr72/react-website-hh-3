@@ -60,22 +60,7 @@ function Navbar() {
       )
     );
   };
-  // const TempHistory = () => {
-  //   const { isAuthenticated, isLoading } = useAuth0();
-
-  //   if (isLoading) {
-  //     return <div>Loading ...</div>;
-  //   }
-
-  //   return (
-  //     isAuthenticated && (
-  //       <NavLink to="/Temps" className="nav-links" onClick={closeMobileMenu}>
-  //         Temp History
-  //       </NavLink>
-  //     )
-  //   );
-  // };
-  const CreateCust = () => {
+  const TempHistory = () => {
     const { isAuthenticated, isLoading } = useAuth0();
 
     if (isLoading) {
@@ -84,16 +69,31 @@ function Navbar() {
 
     return (
       isAuthenticated && (
-        <NavLink
-          to="/CreateCust"
-          className="nav-links"
-          onClick={closeMobileMenu}
-        >
-          Create Cust
+        <NavLink to="/Temps" className="nav-links" onClick={closeMobileMenu}>
+          Temp History
         </NavLink>
       )
     );
   };
+  // const CreateCust = () => {
+  //   const { isAuthenticated, isLoading } = useAuth0();
+
+  //   if (isLoading) {
+  //     return <div>Loading ...</div>;
+  //   }
+
+  //   return (
+  //     isAuthenticated && (
+  //       <NavLink
+  //         to="/CreateCust"
+  //         className="nav-links"
+  //         onClick={closeMobileMenu}
+  //       >
+  //         Create Cust
+  //       </NavLink>
+  //     )
+  //   );
+  // };
   const Logs = () => {
     const { isAuthenticated, isLoading } = useAuth0();
 
@@ -209,7 +209,7 @@ function Navbar() {
               <InputProfile />
             </li>
             <li className="nav-item">
-              <CreateCust />
+              <TempHistory />
             </li>
             <li className="nav-item">
               <Logs />

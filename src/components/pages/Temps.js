@@ -30,7 +30,7 @@ ChartJS.register(
 
 function Temps() {
   const { user } = useAuth0();
-  const [val, setValue] = React.useState("P100001");
+  const [val, setValue] = React.useState("P100004");
   const handleChange = (event) => {
     setValue(event.target.value);
     fetchTemps();
@@ -140,6 +140,15 @@ function Temps() {
         pointRadius: 3,
         borderColor: "#2613cc",
         backgroundColor: "#2613cc",
+        yAxisID: "y",
+      },
+      {
+        label: `Water Temp`,
+        data: chart?.map((x) => x.WaterTemp),
+        borderWidth: 2,
+        pointRadius: 3,
+        borderColor: "#00ddff",
+        backgroundColor: "#00ddff",
         yAxisID: "y",
       },
       {
@@ -257,6 +266,7 @@ function Temps() {
               <option value="P100001">Office</option>
               <option value="P100002">Home 1</option>
               <option value="P100003">Home 2</option>
+              <option value="P100004">Relay</option>
             </select>
           </label>
         </div>
