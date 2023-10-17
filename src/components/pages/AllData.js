@@ -44,14 +44,14 @@ ChartJS.register(
 function AllData() {
   const { user } = useAuth0();
 
-  const [val, setValue] = React.useState("P100001");
+  const [val, setValue] = React.useState("P100004");
   const handleChange = (event) => {
     setValue(event.target.value);
   };
 
   const [range, setRange] = useState([
     {
-      startDate: addDays(new Date(), -2),
+      startDate: addDays(new Date(), 0),
       endDate: new Date(),
       key: "selection",
     },
