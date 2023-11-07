@@ -158,7 +158,7 @@ function AllData() {
         yAxisID: "y",
       },
       {
-        label: `Desired Temp Range`,
+        label: `Desired Temp Low`,
         pointHitRadius: 1,
         type: "line",
         data: chart?.map((x) => x.DesTempLow),
