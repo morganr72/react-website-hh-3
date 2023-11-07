@@ -134,8 +134,8 @@ function AllData() {
         type: "line",
         data: chart?.map((x) => x.CalcInTemp),
         pointRadius: 3,
-        borderColor: "#0b0a0a",
-        backgroundColor: "#0b0a0a",
+        borderColor: "#04570f",
+        backgroundColor: "#04570f",
         yAxisID: "y1",
       },
 
@@ -144,9 +144,20 @@ function AllData() {
         type: "line",
         data: chart?.map((x) => x.ForecastTemp),
         pointRadius: 3,
+        borderColor: "#2613cc",
+        backgroundColor: "#2613cc",
+        yAxisID: "y1",
+      },
+      {
+        label: `Internal Temp`,
+        data: chart?.map((x) => x.ReadTemp),
+        type: "line",
+        borderWidth: 2,
+        pointRadius: 3,
+        spanGaps: true,
         borderColor: "#ce1b1e",
         backgroundColor: "#ce1b1e",
-        yAxisID: "y1",
+        yAxisID: "y",
       },
       {
         label: `Tank Volume`,
@@ -298,6 +309,9 @@ function AllData() {
         type: "linear",
         display: true,
         position: "left",
+        ticks: {
+          count:6
+        },
         title: {
           display: true,
           text: "kWh",
@@ -307,6 +321,9 @@ function AllData() {
         type: "linear",
         display: true,
         position: "right",
+        ticks: {
+          count:6
+        },
         title: {
           display: true,
           text: "Degress C",
@@ -349,6 +366,10 @@ function AllData() {
         type: "linear",
         display: true,
         position: "left",
+        ticks: {
+          count:6
+        },
+
         title: {
           display: true,
           text: "kWh",
@@ -358,6 +379,10 @@ function AllData() {
         type: "linear",
         display: true,
         position: "right",
+        ticks: {
+          count:6
+        },
+
         title: {
           display: true,
           text: "pence",
