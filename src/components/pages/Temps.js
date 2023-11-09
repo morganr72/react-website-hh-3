@@ -209,6 +209,9 @@ function Temps() {
         type: "linear",
         display: true,
         position: "left",
+        ticks: {
+          count:6
+        },
         title: {
           display: true,
           text: "Degrees C",
@@ -218,6 +221,9 @@ function Temps() {
         type: "linear",
         display: true,
         position: "right",
+        ticks: {
+          count:6
+        },
         title: {
           display: true,
           text: "Solar Rad",
