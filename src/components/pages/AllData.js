@@ -238,7 +238,8 @@ function AllData() {
       },
       {
         label: `Gas Heating`,
-        type: "bar",
+        type: "line",
+        showLine: false,
         data: chart?.map((x) => x.GasHeat),
         barThickness: "flex",
         borderColor: "#68015a",
@@ -247,7 +248,8 @@ function AllData() {
       },
       {
         label: `Gas Water`,
-        type: "bar",
+        type: "line",
+        showLine: false,
         data: chart?.map((x) => x.GasWater),
         barThickness: "flex",
         borderColor: "#f49f16",
@@ -256,7 +258,8 @@ function AllData() {
       },
       {
         label: `HP Heating`,
-        type: "bar",
+        type: "line",
+        showLine: false,
         data: chart?.map((x) => x.COPHPHeat),
         barThickness: "flex",
         borderColor: "#a1ac02",
@@ -265,7 +268,8 @@ function AllData() {
       },
       {
         label: `HP Water`,
-        type: "bar",
+        type: "line",
+        showLine: false,
         data: chart?.map((x) => x.COPHPWater),
         barThickness: "flex",
         borderColor: "#04570f",
