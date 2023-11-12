@@ -157,7 +157,7 @@ function AllData() {
         spanGaps: true,
         borderColor: "#ce1b1e",
         backgroundColor: "#ce1b1e",
-        yAxisID: "y",
+        yAxisID: "y1",
       },
       {
         label: `Tank Volume`,
