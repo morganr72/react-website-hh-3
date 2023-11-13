@@ -160,12 +160,21 @@ function AllData() {
         yAxisID: "y1",
       },
       {
-        label: `Tank Volume`,
+        label: `Predicted Tank Volume`,
         type: "line",
         data: chart?.map((x) => x.RunningVol),
         pointRadius: 3,
         borderColor: "#68015a",
         backgroundColor: "#68015a",
+        yAxisID: "y",
+      },
+      {
+        label: `Actual Tank Volume`,
+        type: "line",
+        data: chart?.map((x) => x.RunningVol),
+        pointRadius: 3,
+        borderColor: "#b3b0b0",
+        backgroundColor: "#b3b0b0",
         yAxisID: "y",
       },
       {
