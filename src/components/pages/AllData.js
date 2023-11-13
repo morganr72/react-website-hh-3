@@ -171,7 +171,7 @@ function AllData() {
       {
         label: `Actual Tank Volume`,
         type: "line",
-        data: chart?.map((x) => x.RunningVol),
+        data: chart?.map((x) => x.WaterKWH),
         pointRadius: 3,
         borderColor: "#b3b0b0",
         backgroundColor: "#b3b0b0",
