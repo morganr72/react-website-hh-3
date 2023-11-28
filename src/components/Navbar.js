@@ -109,6 +109,21 @@ function Navbar() {
       )
     );
   };
+  const Boost = () => {
+    const { isAuthenticated, isLoading } = useAuth0();
+
+    if (isLoading) {
+      return <div>Loading ...</div>;
+    }
+
+    return (
+      isAuthenticated && (
+        <NavLink to="/Boost" className="nav-links" onClick={closeMobileMenu}>
+          Boost
+        </NavLink>
+      )
+    );
+  };
   const InputProfile = () => {
     const { isAuthenticated, isLoading } = useAuth0();
 
@@ -206,7 +221,7 @@ function Navbar() {
               <CostCompare />
             </li> */}
             <li className="nav-item">
-              <InputProfile />
+              <Boost />
             </li>
             <li className="nav-item">
               <TempHistory />
@@ -214,7 +229,6 @@ function Navbar() {
             <li className="nav-item">
               <Logs />
             </li>
-
             <li className="nav-item">
               <ElecLink />
             </li>

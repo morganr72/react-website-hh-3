@@ -10,6 +10,7 @@ import InputProfile from "./components/pages/InputProfile";
 import ElecData from "./components/pages/ElecData";
 import CreateCust from "./components/pages/CreateCust";
 import Logs from "./components/pages/Logs";
+import Boost from "./components/pages/Boost";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -78,6 +79,7 @@ function App() {
           <Route path="/InputProfile" element={<InputProfile />} />
           <Route path="/CreateCust" element={<CreateCust />} />
           <Route path="/Logs" element={<Logs />} />
+          <Route path="/Boost" element={<Boost />} />
         </Routes>
       </Router>
     </>
