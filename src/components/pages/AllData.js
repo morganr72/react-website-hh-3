@@ -307,6 +307,7 @@ function AllData() {
         borderColor: "#b3b0b0",
         backgroundColor: "#b3b0b0",
         yAxisID: "y",
+        stack: 'bar-stacked' 
       },
       {
         label: `Boost Heat`,
@@ -316,6 +317,7 @@ function AllData() {
         borderColor: "#6adced",
         backgroundColor: "#6adced",
         yAxisID: "y",
+        stack: 'bar-stacked' 
       },
       {
         label: `Boost Water`,
@@ -325,6 +327,7 @@ function AllData() {
         borderColor: "#f6ca83",
         backgroundColor: "#f6ca83",
         yAxisID: "y",
+        stack: 'bar-stacked' 
       },
     ],
   };
@@ -383,6 +386,7 @@ function AllData() {
           text: "Degress C",
         },
       },
+      
     },
   };
 
