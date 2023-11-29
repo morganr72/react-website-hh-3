@@ -125,19 +125,14 @@ function AllData() {
 
   console.log("chart", chart);
   useEffect(() => fetchCommands(), []);
+  // const legi = (value) => x.CmdOverride = 'L' ? value : undefined;
+  // const boostWater = (value) => x.CmdOverride = 'W' ? value : undefined;
+  // const boostHeat = (value) => x.CmdOverride = 'H' ? value : undefined;
 
   var data = {
     labels: chart?.map((x) => x.DateTime),
     datasets: [
-      {
-        label: `Expected Temp`,
-        type: "line",
-        data: chart?.map((x) => x.CalcInTemp),
-        pointRadius: 3,
-        borderColor: "#04570f",
-        backgroundColor: "#04570f",
-        yAxisID: "y1",
-      },
+
 
       {
         label: `External Temp`,
@@ -146,6 +141,15 @@ function AllData() {
         pointRadius: 3,
         borderColor: "#2613cc",
         backgroundColor: "#2613cc",
+        yAxisID: "y1",
+      },
+      {
+        label: `Expected Temp`,
+        type: "line",
+        data: chart?.map((x) => x.CalcInTemp),
+        pointRadius: 3,
+        borderColor: "#04570f",
+        backgroundColor: "#04570f",
         yAxisID: "y1",
       },
       {
@@ -209,6 +213,8 @@ function AllData() {
         backgroundColor: "#6adced",
         yAxisID: "y",
       },
+
+
     ],
   };
 
@@ -291,6 +297,33 @@ function AllData() {
         barThickness: "flex",
         borderColor: "#04570f",
         backgroundColor: "#04570f",
+        yAxisID: "y",
+      },
+      {
+        label: `Legionella`,
+        type: "bar",
+        data: chart?.map((x) => x.Legionella),
+        barThickness: "flex",
+        borderColor: "#b3b0b0",
+        backgroundColor: "#b3b0b0",
+        yAxisID: "y",
+      },
+      {
+        label: `Boost Heat`,
+        type: "bar",
+        data: chart?.map((x) => x.BoostHeat),
+        barThickness: "flex",
+        borderColor: "#6adced",
+        backgroundColor: "#6adced",
+        yAxisID: "y",
+      },
+      {
+        label: `Boost Water`,
+        type: "bar",
+        data: chart?.map((x) => x.BoostWater),
+        barThickness: "flex",
+        borderColor: "#f6ca83",
+        backgroundColor: "#f6ca83",
         yAxisID: "y",
       },
     ],

@@ -94,7 +94,7 @@ const options = {
         <option disabled={true} value="">
             Device
           </option>
-          <option value="P100001">Office</option>
+          <option value="P100004">Office</option>
           <option value="P100002">Home 1</option>
           <option value="P100003">Home 2</option>
         </select>
