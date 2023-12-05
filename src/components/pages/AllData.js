@@ -252,6 +252,16 @@ function AllData() {
         yAxisID: "y1",
       },
       {
+        label: `Elec Consumption`,
+        data: chart?.map((x) => x.ActElecCons),
+        type: "line",
+        borderWidth: 2,
+        pointRadius: 1,
+        borderColor: "#a1ac02",
+        backgroundColor: "#a1ac02",
+        yAxisID: "y",
+      },
+      {
         label: `Gas Heating`,
         type: "line",
         showLine: false,
@@ -329,6 +339,7 @@ function AllData() {
         yAxisID: "y",
         stack: 'bar-stacked' 
       },
+
     ],
   };
 
@@ -484,10 +495,10 @@ function AllData() {
           <label className="CboxLab">
             {"Device Id "}
             <select value={val} onChange={handleChange}>
-              <option value="P100001">Office</option>
+              <option value="P100004">Office</option>
               <option value="P100002">Home 1</option>
               <option value="P100003">Home 2</option>
-              <option value="P100004">Relay</option>
+              <option value="P100001">Relay</option>
             </select>
           </label>
         </div>
