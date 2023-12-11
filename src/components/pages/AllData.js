@@ -175,7 +175,7 @@ function AllData() {
       {
         label: `Actual Tank Volume`,
         type: "line",
-        data: chart?.map((x) => x.WaterKWH),
+        data: chart?.map((x) => x.ActHWV),
         pointRadius: 3,
         borderColor: "#b3b0b0",
         backgroundColor: "#b3b0b0",
@@ -382,7 +382,7 @@ function AllData() {
         },
         title: {
           display: true,
-          text: "kWh",
+          text: "litres",
         },
       },
       y1: {
