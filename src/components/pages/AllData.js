@@ -164,6 +164,15 @@ function AllData() {
         yAxisID: "y1",
       },
       {
+        label: `Temp Rerun`,
+        type: "bar",
+        data: chart?.map((x) => x.TempRerun),
+        borderColor: "#b8e6aa",
+        barThickness: "flex",
+        backgroundColor: "#b8e6aa",
+        yAxisID: "y1",
+      },
+      {
         label: `Predicted Tank Volume`,
         type: "line",
         data: chart?.map((x) => x.RunningVol),
@@ -213,6 +222,7 @@ function AllData() {
         backgroundColor: "#6adced",
         yAxisID: "y",
       },
+
 
 
     ],

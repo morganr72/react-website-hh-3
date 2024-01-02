@@ -52,32 +52,7 @@ function Logs() {
   console.log(baseUrl);
 
   const [table, setTable] = useState([]);
-  // function handleChange(evt) {
-  //   const value = evt.target.value;
-  //   console.log("Value", evt.target.value);
-  //   console.log("Name", evt.target.name);
-
-  //   //   setState({
-  //   //     ...state,
-  //   //     [evt.target.name]: value,
-  //   //   });
-  //   // }
-  // }
-
-  // const options = {
-  //   method: "GET",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     "x-api-key": `${apiKey}`,
-  //   },
-  // };
-
-  // var columns = [
-  //   { field: "TimeStamp", headerName: "TimeStamp", width: 300 },
-  //   { field: "Device", headerName: "Device Time", width: 300 },
-  //   { field: "Message", headerName: "Message", width: 900 },
-  // ];
-  // // table.timestamp = "2023-01-01 00:00:00";
+ 
   const fetchLogs = function () {
     // table.timestamp = "";
     console.log("Attempting API");

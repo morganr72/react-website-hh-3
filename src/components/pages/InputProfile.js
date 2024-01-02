@@ -68,7 +68,7 @@ function Picker() {
   //   temp: state.temp,
   //   day: state.day,
   // };
-  const [val, setValue] = React.useState("P100001");
+  const [val, setValue] = React.useState("P100004");
   const handleDevChange = (event) => {
     setValue(event.target.value);
     console.log("DevValue", val);
@@ -297,7 +297,7 @@ function Picker() {
               <label class="CboxLab">
                 {"UserID "}
                 <select value={val} onChange={handleDevChange}>
-                  <option value="P100001">Office</option>
+                  <option value="P100004">Office</option>
                   <option value="P100002">Home 1</option>
                   <option value="P100003">Home 2</option>
                   <option value="P100004">Relay</option>
@@ -354,7 +354,7 @@ function Picker() {
                 step={0.5}
                 size="large"
                 marks={pmarks}
-                min={16}
+                min={10}
                 max={24}
                 // valueLabelFormat={state.temp[0]}
               />
