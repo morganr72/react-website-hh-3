@@ -169,6 +169,15 @@ function Temps() {
         backgroundColor: "#14d214",
         yAxisID: "y",
       },
+      {
+        label: `Calculated Tank Mid`,
+        data: chart?.map((x) => x.PredTankMid),
+        borderWidth: 2,
+        pointRadius: 3,
+        borderColor: "#68015a",
+        backgroundColor: "#68015a",
+        yAxisID: "y",
+      },
     ],
   };
 
