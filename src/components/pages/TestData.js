@@ -41,7 +41,7 @@ ChartJS.register(
   Colors
 );
 
-function AllData() {
+function TestData() {
   const { user } = useAuth0();
 
   const [val, setValue] = React.useState("P100004");
@@ -88,7 +88,7 @@ function AllData() {
   //   console.log(fmDate);
   //   console.log(toDate);
   var baseUrl =
-    "https://goyh62l73j.execute-api.us-east-1.amazonaws.com/default/MasterTransactionAPI?premid=" +
+    "https://dqn8wn69ml.execute-api.us-east-1.amazonaws.com/default/TestMasterTransactionAPI?premid=" +
     val +
     "&userid= " +
     user.name +
@@ -97,7 +97,7 @@ function AllData() {
     "&todate=" +
     toDate;
   console.log(baseUrl);
-  var apiKey = "vbeLPuegOeCdlx7bouy95nsege1farX5TTbrvL60";
+  var apiKey = "fWw8WmDpLI6Klq3v0wixMaXT0sGzzRNFi0qKZ5Sd";
 
   const [chart, setChart] = useState([]);
 
@@ -153,8 +153,8 @@ function AllData() {
         yAxisID: "y1",
       },
       {
-        label: `Internal Temp`,
-        data: chart?.map((x) => x.ReadTemp),
+        label: `PredStart Temp`,
+        data: chart?.map((x) => x.PredTempStart),
         type: "line",
         borderWidth: 2,
         pointRadius: 3,
@@ -163,28 +163,11 @@ function AllData() {
         backgroundColor: "#ce1b1e",
         yAxisID: "y1",
       },
+
       {
-        label: `Temp Rerun`,
-        type: "bar",
-        data: chart?.map((x) => x.TempRerun),
-        borderColor: "#b8e6aa",
-        barThickness: "flex",
-        backgroundColor: "#b8e6aa",
-        yAxisID: "y1",
-      },
-      {
-        label: `Predicted Tank Volume`,
+        label: `UnmetTempDemand`,
         type: "line",
-        data: chart?.map((x) => x.RunningVol),
-        pointRadius: 3,
-        borderColor: "#68015a",
-        backgroundColor: "#68015a",
-        yAxisID: "y",
-      },
-      {
-        label: `Actual Tank Volume`,
-        type: "line",
-        data: chart?.map((x) => x.ActHWV),
+        data: chart?.map((x) => x.UnmetTempDemand),
         pointRadius: 3,
         borderColor: "#b3b0b0",
         backgroundColor: "#b3b0b0",
@@ -404,7 +387,7 @@ function AllData() {
         },
         title: {
           display: true,
-          text: "litres",
+          text: "KWh",
         },
       },
       y1: {
@@ -540,4 +523,4 @@ function AllData() {
   );
 }
 
-export default AllData;
+export default TestData;
