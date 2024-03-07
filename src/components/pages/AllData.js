@@ -173,18 +173,18 @@ function AllData() {
         yAxisID: "y1",
       },
       {
-        label: `Predicted Tank Volume`,
+        label: `Total Cost`,
         type: "line",
-        data: chart?.map((x) => x.RunningVol),
+        data: chart?.map((x) => x.cTotalCost),
         pointRadius: 3,
         borderColor: "#68015a",
         backgroundColor: "#68015a",
         yAxisID: "y",
       },
       {
-        label: `Actual Tank Volume`,
+        label: `Gas Equivalent Cost`,
         type: "line",
-        data: chart?.map((x) => x.ActHWV),
+        data: chart?.map((x) => x.cGasEquiv),
         pointRadius: 3,
         borderColor: "#b3b0b0",
         backgroundColor: "#b3b0b0",
@@ -213,15 +213,7 @@ function AllData() {
         backgroundColor: "#14d214",
         yAxisID: "y1",
       },
-      {
-        label: `Water Demand`,
-        type: "bar",
-        data: chart?.map((x) => x.WaterDemand),
-        borderColor: "#6adced",
-        barThickness: "flex",
-        backgroundColor: "#6adced",
-        yAxisID: "y",
-      },
+
 
 
 
@@ -404,7 +396,7 @@ function AllData() {
         },
         title: {
           display: true,
-          text: "litres",
+          text: "£",
         },
       },
       y1: {
