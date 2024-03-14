@@ -14,19 +14,7 @@ import Boost from "./components/pages/Boost";
 import TestData from "./components/pages/TestData";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import {
-  InputLabel,
-  MenuItem,
-  FormControl,
-  Select,
-  SelectChangeEvent,
-  Grid,
-  Box,
-  Button,
-  Slider,
-  Container,
-} from "@mui/material";
+
 
 import "./App.css";
 

@@ -191,6 +191,15 @@ function AllData() {
         yAxisID: "y",
       },
       {
+        label: `Elec Fixed Price  Cost`,
+        type: "line",
+        data: chart?.map((x) => x.cEfpCost),
+        pointRadius: 3,
+        borderColor: "#6adced",
+        backgroundColor: "#6adced",
+        yAxisID: "y",
+      },
+      {
         label: `Desired Temp Low`,
         pointHitRadius: 1,
         type: "line",
