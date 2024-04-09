@@ -6,6 +6,7 @@ import "chartjs-adapter-moment";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { useAuth0 } from "@auth0/auth0-react";
+import 'chartjs-adapter-luxon' ;
 import "../Charts.css";
 import {
   Chart as ChartJS,
@@ -82,6 +83,7 @@ function AllData() {
     }
   };
 
+ 
   console.log("user id:", user.name);
   var fmDate = format(range[0].startDate, "MM-dd-yyyy");
   var toDate = format(range[0].endDate, "MM-dd-yyyy");
@@ -124,6 +126,8 @@ function AllData() {
   };
 
   console.log("chart", chart);
+
+  console.log("Dates", chart?.map((x) => x.DateTime))
   useEffect(() => fetchCommands(), []);
   // const legi = (value) => x.CmdOverride = 'L' ? value : undefined;
   // const boostWater = (value) => x.CmdOverride = 'W' ? value : undefined;
@@ -394,6 +398,11 @@ function AllData() {
           displayFormats: {
             hour: "dd MMM D HH:mm",
           },
+        },
+        adapters: {
+          date: {
+            zone: 'GB',
+          }
         },
       },
       y: {
