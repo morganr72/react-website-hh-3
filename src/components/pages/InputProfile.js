@@ -301,6 +301,7 @@ function Picker() {
                   <option value="P100002">Home 1</option>
                   <option value="P100003">Home 2</option>
                   <option value="P100004">Relay</option>
+                  <option value="P100004">Farm</option>
                 </select>
               </label>
             </Grid>
