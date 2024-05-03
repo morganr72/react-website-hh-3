@@ -69,15 +69,15 @@ function Picker() {
   //   day: state.day,
   // };
   const [val, setValue] = React.useState("P100004");
-  const handleDevChange = (event) => {
-    setValue(event.target.value);
-    console.log("DevValue", val);
-  };
+  // const handleDevChange = (event) => {
+  //   setValue(event.target.value);
+  //   console.log("DevValue", val);
+  // };
 
   const jsonString = " ";
   var baseUrl =
     "https://w2s4kg8ggk.execute-api.us-east-1.amazonaws.com/default/InputProfileAPI?device=" +
-    val +
+    state.user +
     "&timestart=" +
     state.times[0] +
     "&timeend=" +
@@ -296,12 +296,12 @@ function Picker() {
             >
               <label class="CboxLab">
                 {"UserID "}
-                <select value={val} onChange={handleDevChange}>
+                <select name = "user" value={state.user} onChange={handleChange}>
                   {/* <option value="P100004">Office</option> */}
                   <option value="P100002">Home 1</option>
                   <option value="P100003">Home 2</option>
                   <option value="P100004">Relay</option>
-                  <option value="P100004">Farm</option>
+                  <option value="P100005">Farm</option>
                 </select>
               </label>
             </Grid>
