@@ -173,6 +173,23 @@ function Navbar() {
       )
     );
   };
+
+  const Prices = () => {
+    const { isAuthenticated, isLoading } = useAuth0();
+
+    if (isLoading) {
+      return <div>Loading ...</div>;
+    }
+
+    return (
+      isAuthenticated && (
+        <Link to="/Prices" className="nav-links" onClick={closeMobileMenu}>
+          Prices
+        </Link>
+      )
+    );
+  };
+
   // const CostCompare = () => {
   //   const { isAuthenticated, isLoading } = useAuth0();
 
@@ -245,7 +262,7 @@ function Navbar() {
               <Logs />
             </li>
             <li className="nav-item">
-              <TestData />
+              <Prices />
             </li>
             {/* <li className="nav-item">
               <ElecLink />
