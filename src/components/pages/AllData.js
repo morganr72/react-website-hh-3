@@ -462,7 +462,7 @@ function AllData() {
       },
       title: {
         display: true,
-        text: "Prices and Commands",
+        text: "Prices and Carbon Intensity",
       },
     },
     scales: {
@@ -485,7 +485,7 @@ function AllData() {
 
         title: {
           display: true,
-          text: "kWh",
+          text: "CO2/kWh",
         },
       },
       y1: {
