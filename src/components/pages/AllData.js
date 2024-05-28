@@ -347,41 +347,43 @@ function AllData() {
         backgroundColor: "#68015a",
         yAxisID: "y",
       },
-
-      // {
-      //   label: `Legionella`,
-      //   type: "bar",
-      //   data: chart?.map((x) => x.Legionella),
-      //   barThickness: "flex",
-      //   borderColor: "#b3b0b0",
-      //   backgroundColor: "#b3b0b0",
-      //   yAxisID: "y",
-      //   stack: 'bar-stacked' 
-      // },
-      // {
-      //   label: `Boost Heat`,
-      //   type: "bar",
-      //   data: chart?.map((x) => x.BoostHeat),
-      //   barThickness: "flex",
-      //   borderColor: "#6adced",
-      //   backgroundColor: "#6adced",
-      //   yAxisID: "y",
-      //   stack: 'bar-stacked' 
-      // },
-      // {
-      //   label: `Boost Water`,
-      //   type: "bar",
-      //   data: chart?.map((x) => x.BoostWater),
-      //   barThickness: "flex",
-      //   borderColor: "#f6ca83",
-      //   backgroundColor: "#f6ca83",
-      //   yAxisID: "y",
-      //   stack: 'bar-stacked' 
-      // },
-
     ],
   };
-
+  var data2 = {
+    labels: chart?.map((x) => x.DateTime),
+    datasets: [
+      {
+        label: `Cum Gas Only Carbon`,
+        type: "line",
+        data: chart?.map((x) => x.CumGasCarb),
+        borderWidth: 2,
+        borderColor: "#ce1b1e",
+        pointRadius: 3,
+        backgroundColor: "#ce1b1e",
+        yAxisID: "y1",
+      },
+      {
+        label: `Cum Flat Elec Carbon`,
+        type: "line",
+        data: chart?.map((x) => x.CumFlatCarb),
+        borderWidth: 2,
+        pointRadius: 3,
+        borderColor: "#2613cc",
+        backgroundColor: "#2613cc",
+        yAxisID: "y1",
+      },
+      {
+        label: `Cum Actual Carbon`,
+        data: chart?.map((x) => x.CumActCarb),
+        type: "line",
+        borderWidth: 2,
+        pointRadius: 1,
+        borderColor: "#14d214",
+        backgroundColor: "#14d214",
+        yAxisID: "y1",
+      },
+    ],
+  };
   var options = {
     maintainAspectRatio: false,
     interaction: {
@@ -503,6 +505,64 @@ function AllData() {
       },
     },
   };
+  var options2 = {
+    maintainAspectRatio: false,
+    interaction: {
+      mode: "index",
+    },
+    responsive: true,
+    plugins: {
+      datalabels: {
+        display: false,
+      },
+      legend: {
+        labels: {
+          fontSize: 14,
+        },
+      },
+      title: {
+        display: true,
+        text: "Other Run Modes",
+      },
+    },
+    scales: {
+      x: {
+        type: "time",
+        time: {
+          unit: "hour",
+          displayFormats: {
+            hour: "dd MMM D HH:mm",
+          },
+        },
+      },
+      y: {
+        type: "linear",
+        display: true,
+        position: "left",
+        ticks: {
+          count:6
+        },
+
+        title: {
+          display: true,
+          text: "TBC",
+        },
+      },
+      y1: {
+        type: "linear",
+        display: true,
+        position: "right",
+        ticks: {
+          count:6
+        },
+
+        title: {
+          display: true,
+          text: "CO2/KWH",
+        },
+      },
+    },
+  };
 
   return (
     <>
@@ -557,6 +617,9 @@ function AllData() {
       </div>
       <div>
         <Bar height={400} data={data1} options={options1} />
+      </div>
+      <div>
+        <Bar height={400} data={data2} options={options2} />
       </div>
     </>
   );
