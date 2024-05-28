@@ -147,7 +147,7 @@ const options = {
           </option>
           <option value="P100004">Office</option>
           <option value="P100005">Farm</option>
-          <option value="P100003">Home 2</option>
+          <option value="P100003">Sim</option>
         </select>
 
 

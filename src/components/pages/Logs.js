@@ -130,7 +130,7 @@ function Logs() {
               <select value={val} onChange={handleDevChange}>
                 <option value="P100001">Office</option>
                 <option value="P100002">Home 1</option>
-                <option value="P100003">Home 2</option>
+                <option value="P100003">Sim</option>
                 <option value="P100005">Farm</option>
               </select>
             </label>
