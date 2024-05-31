@@ -7,6 +7,8 @@ import CostCompare from "./components/pages/CostCompare";
 import AllData from "./components/pages/AllData";
 import Prices from "./components/pages/Prices";
 import InputProfile from "./components/pages/InputProfile";
+import CoolingInputProfile from "./components/pages/CoolingInputProfile";
+import WaterInputProfile from "./components/pages/WaterInputProfile";
 import ElecData from "./components/pages/ElecData";
 import CreateCust from "./components/pages/CreateCust";
 import Logs from "./components/pages/Logs";
@@ -66,6 +68,8 @@ function App() {
           <Route path="/Prices" element={<Prices />} />
           <Route path="/ElecData" element={<ElecData />} />
           <Route path="/InputProfile" element={<InputProfile />} />
+          <Route path="/CoolingInputProfile" element={<CoolingInputProfile />} />
+          <Route path="/WaterInputProfile" element={<WaterInputProfile />} />
           <Route path="/CreateCust" element={<CreateCust />} />
           <Route path="/Logs" element={<Logs />} />
           <Route path="/Boost" element={<Boost />} />
