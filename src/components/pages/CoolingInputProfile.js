@@ -59,7 +59,7 @@ const inptheme = createTheme({
 
 function CoolingPicker() {
   const [state, setState] = React.useState({
-    temp: [18],
+    temp: [18, 20],
     day: 1,
     times: [0, 20],
   });
@@ -92,6 +92,8 @@ function CoolingPicker() {
     state.times[1] +
     "&templ=" +
     state.temp[0] +
+    "&temph=" +
+    state.temp[1] +
     "&active=" +
     checked +
     "&day=" +
@@ -190,21 +192,12 @@ function CoolingPicker() {
     { field: "Day", headerName: "Day", width: 130 },
     { field: "starttime", headerName: "Start Time", width: 130 },
     { field: "endtime", headerName: "End Time", width: 130 },
-    { field: "mintemp", headerName: "Min Temp", width: 130 , },
+    { field: "mintemp", headerName: "Min Temp", width: 130 },
+    { field: "maxtemp", headerName: "Max Temp", width: 130 },
     { field: "checked", dataType: Boolean, headerName: "Cooling Active", width: 180}
   ];
   var rows = tbldata;
 
-  // var trows = [
-  //   {
-  //     id: "001",
-  //     Day: 1,
-  //     starttime: "00:00",
-  //     endtime: "08:00",
-  //     mintemp: 17,
-  //     maxtemp: 20,
-  //   },
-  // ];
   console.log("Rows", rows);
 
   
@@ -228,30 +221,13 @@ function CoolingPicker() {
       starttime: state.times[0] + ":00",
       endtime: state.times[1] + ":00",
       mintemp: state.temp[0],
+      maxtemp: state.temp[1],
       checked: checked,
     };
     tbldata = [...tbldata, tableworkdat];
-    // tblcounter.push(counter);
-    // tblstarttime.push(state.times[0]);
-    // tblendtime.push(state.times[1]);
-    // tblmaxtemp.push(state.temp[1]);
-    // tblmintemp.push(state.temp[0]);
-    // tblwkd.push(state.day);
-    // console.log("start times", tblstarttime);
-    // console.log("end times", tblendtime);
-    // console.log("max temps", tblmaxtemp);
-    // console.log("min temps", tblmintemp);
-    // console.log("day", tblwkd);
+
     console.log("Data", tbldata);
 
-    // const trows = [rows[0]];
-    // const trows = tbldata.map((trows) => ({
-    //   Day: trows.Day,
-    //   starttime: trows.starttime,
-    //   endtime: trows.endtime,
-    //   mintemp: trows.mintemp,
-    //   maxtemp: trows.maxtemp,
-    // }));
     console.log("Columns", columns);
     console.log("Rows", rows);
     console.log("Trows", trows);
@@ -350,7 +326,7 @@ function CoolingPicker() {
           </Typography>
           
               <Slider
-                defaultValue={[18]}
+                defaultValue={[18,22]}
                 value={state.temp}
                 name="temp"
                 valueLabelDisplay="auto"
