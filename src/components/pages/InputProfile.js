@@ -300,7 +300,7 @@ function Picker() {
                   {/* <option value="P100004">Office</option> */}
                   <option value="P100002">Home 1</option>
                   <option value="P100003">Simulation</option>
-                  <option value="P100004">Relay</option>
+                  <option value="P100004">Office</option>
                   <option value="P100005">Farm</option>
                 </select>
               </label>
@@ -409,28 +409,7 @@ function Picker() {
           </div>
         </Container>
 
-        {/* <div>
-          <table>
-            <tr>
-              <th>Day</th>
-              <th>Start Time</th>
-              <th>End Time</th>
-              <th>Min Temp</th>
-              <th>Max Temp</th>
-            </tr>
-            {trows.map((val, key) => {
-              return (
-                <tr key={key}>
-                  <td>{val.Day}</td>
-                  <td>{val.starttime}</td>
-                  <td>{val.endtime}</td>
-                  <td>{val.mintemp}</td>
-                  <td>{val.max.temp}</td>
-                </tr>
-              );
-            })}
-          </table>
-        </div> */}
+
       </ThemeProvider>
     </>
   );
