@@ -501,9 +501,9 @@ function TestData() {
             {"Device Id "}
             <select value={val} onChange={handleChange}>
               <option value="P100004">Office</option>
-              <option value="P100002">Home 1</option>
+              <option value="P100005">Farm</option>
               <option value="P100003">Sim</option>
-              <option value="P100001">Relay</option>
+
             </select>
           </label>
         </div>

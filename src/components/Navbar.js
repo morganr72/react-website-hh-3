@@ -183,8 +183,8 @@ function Navbar() {
 
     return (
       isAuthenticated && (
-        <Link to="/Prices" className="nav-links" onClick={closeMobileMenu}>
-          Prices
+        <Link to="/TestData" className="nav-links" onClick={closeMobileMenu}>
+          TestData
         </Link>
       )
     );
@@ -262,7 +262,7 @@ function Navbar() {
               <Logs />
             </li>
             <li className="nav-item">
-              <Prices />
+              <TestData />
             </li>
             {/* <li className="nav-item">
               <ElecLink />
