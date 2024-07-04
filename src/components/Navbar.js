@@ -45,7 +45,7 @@ function Navbar() {
     );
   };
 
-  const ElecLink = () => {
+  const SimulationData = () => {
     const { isAuthenticated, isLoading } = useAuth0();
 
     if (isLoading) {
@@ -54,8 +54,8 @@ function Navbar() {
 
     return (
       isAuthenticated && (
-        <Link to="/ElecData" className="nav-links" onClick={closeMobileMenu}>
-          Elec Data
+        <Link to="/SimulationData" className="nav-links" onClick={closeMobileMenu}>
+          SimulationData
         </Link>
       )
     );
@@ -75,25 +75,7 @@ function Navbar() {
       )
     );
   };
-  // const CreateCust = () => {
-  //   const { isAuthenticated, isLoading } = useAuth0();
 
-  //   if (isLoading) {
-  //     return <div>Loading ...</div>;
-  //   }
-
-  //   return (
-  //     isAuthenticated && (
-  //       <NavLink
-  //         to="/CreateCust"
-  //         className="nav-links"
-  //         onClick={closeMobileMenu}
-  //       >
-  //         Create Cust
-  //       </NavLink>
-  //     )
-  //   );
-  // };
   const Logs = () => {
     const { isAuthenticated, isLoading } = useAuth0();
 
@@ -190,21 +172,7 @@ function Navbar() {
     );
   };
 
-  // const CostCompare = () => {
-  //   const { isAuthenticated, isLoading } = useAuth0();
 
-  //   if (isLoading) {
-  //     return <div>Loading ...</div>;
-  //   }
-
-  //   return (
-  //     isAuthenticated && (
-  //       <Link to="/CostCompare" className="nav-links" onClick={closeMobileMenu}>
-  //         Cost Compare
-  //       </Link>
-  //     )
-  //   );
-  // };
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
   console.log(button);
@@ -243,15 +211,9 @@ function Navbar() {
                 Home
               </Link>
             </li> */}
-            {/* <li className="nav-item">
-              <TempHistory />
-            </li> */}
             <li className="nav-item">
               <AllData />
             </li>
-            {/* <li className="nav-item">
-              <CostCompare />
-            </li> */}
             <li className="nav-item">
               <Boost />
             </li>
@@ -261,12 +223,12 @@ function Navbar() {
             <li className="nav-item">
               <Logs />
             </li>
-            <li className="nav-item">
-              <TestData />
-            </li>
             {/* <li className="nav-item">
-              <ElecLink />
+              <TestData />
             </li> */}
+            <li className="nav-item">
+              <SimulationData />
+            </li>
             <li className="nav-item">
               <LoginButton />
             </li>

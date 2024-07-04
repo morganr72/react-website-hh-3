@@ -9,6 +9,7 @@ import Prices from "./components/pages/Prices";
 import InputProfile from "./components/pages/InputProfile";
 import CoolingInputProfile from "./components/pages/CoolingInputProfile";
 import WaterInputProfile from "./components/pages/WaterInputProfile";
+import SimulationData from "./components/pages/SimulationData";
 import ElecData from "./components/pages/ElecData";
 import CreateCust from "./components/pages/CreateCust";
 import Logs from "./components/pages/Logs";
@@ -74,6 +75,7 @@ function App() {
           <Route path="/Logs" element={<Logs />} />
           <Route path="/Boost" element={<Boost />} />
           <Route path="/TestData" element={<TestData />} />
+          <Route path="/SimulationData" element={<SimulationData />} />
         </Routes>
       </Router>
     </>
