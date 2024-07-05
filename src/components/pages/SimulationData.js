@@ -157,6 +157,51 @@ function AllData() {
         backgroundColor: "#a1ac02",
         yAxisID: "y",
       },
+      {
+        label: `Total Carbon Intensity Cost`,
+        type: "line",
+        data: chart?.map((x) => x.TotalCarbCost),
+        pointRadius: 3,
+        borderColor: "#ce1b1e",
+        backgroundColor: "#ce1b1e",
+        yAxisID: "y",
+      },
+      {
+        label: `Total Gas Only CO2`,
+        type: "line",
+        data: chart?.map((x) => x.TotalGasOnlyCarb),
+        pointRadius: 3,
+        borderColor: "#7a5e77",
+        backgroundColor: "#7a5e77",
+        yAxisID: "y1",
+      },
+      {
+        label: `Total Flat Elec CO2`,
+        type: "line",
+        data: chart?.map((x) => x.TotalFlatElecCarb),
+        pointRadius: 3,
+        borderColor: "#f2d19b",
+        backgroundColor: "#f2d19b",
+        yAxisID: "y1",
+      },
+      {
+        label: `Total Actual CO2`,
+        type: "line",
+        data: chart?.map((x) => x.TotalActCarb),
+        pointRadius: 3,
+        borderColor: "#a5a872",
+        backgroundColor: "#a5a872",
+        yAxisID: "y1",
+      },
+      {
+        label: `Total Carbon Intensity CO2`,
+        type: "line",
+        data: chart?.map((x) => x.TotalCarbCarb),
+        pointRadius: 3,
+        borderColor: "#c27677",
+        backgroundColor: "#c27677",
+        yAxisID: "y1",
+      },
     ],
   };
 
@@ -447,6 +492,105 @@ function AllData() {
       },
     ],
   };
+
+  var data4 = {
+    labels: chart?.map((x) => x.DateTime),
+    datasets: [
+      {
+        label: `HP Water`,
+        data: chart?.map((x) => x.CarbHPW),
+        type: "line",
+        showLine: false,
+        pointRadius: 9,
+        pointStyle: 'triangle',
+        barThickness: "flex",
+        borderColor: "#04570f",
+        backgroundColor: "#04570f",
+        yAxisID: "y1",
+      },
+      {
+        label: `HP Heat`,
+        data: chart?.map((x) => x.CarbHPH),
+        type: "line",
+        showLine: false,
+        pointRadius: 9,
+        pointStyle: 'triangle',
+        barThickness: "flex",
+        borderColor: "#a1ac02",
+        backgroundColor: "#a1ac02",
+        yAxisID: "y1",
+      },
+
+      {
+        label: `Gas Water`,
+        data: chart?.map((x) => x.CarbGasW),
+        type: "line",
+        showLine: false,
+        pointRadius: 9,
+        pointStyle: 'triangle',
+        barThickness: "flex",
+        borderColor: "#f49f16",
+        backgroundColor: "#f49f16",
+        yAxisID: "y1",
+      },
+     
+      {
+        label: `Gas Heat`,
+        data: chart?.map((x) => x.CarbGasH),
+        type: "line",
+        showLine: false,
+        pointRadius: 9,
+        pointStyle: 'triangle',
+        barThickness: "flex",
+        borderColor: "#68015a",
+        backgroundColor: "#68015a",
+        yAxisID: "y1",
+      },
+      {
+        label: `Room Temp`,
+        type: "line",
+        data: chart?.map((x) => x.CarbRoom),
+        pointRadius: 3,
+        borderColor: "#ce1b1e",
+        backgroundColor: "#ce1b1e",
+        yAxisID: "y",
+      },
+      {
+        label: `Water Temp`,
+        type: "line",
+        data: chart?.map((x) => x.CarbWater),
+        pointRadius: 3,
+        borderColor: "#04570f",
+        backgroundColor: "#04570f",
+        yAxisID: "y",
+      },
+      {
+        label: `Desired Temp Low`,
+        pointHitRadius: 1,
+        type: "line",
+        data: chart?.map((x) => x.CarbDTL),
+        pointRadius: 1,
+        fill: "+1",
+        borderColor: "#f6ca83",
+        backgroundColor: "#f6ca83",
+        yAxisID: "y",
+      },
+
+      {
+        label: `Desired Temp High`,
+        pointHitRadius: 1,
+        type: "line",
+        data: chart?.map((x) => x.CarbDTH),
+        pointRadius: 1,
+        fill: false,
+        borderColor: "#14d214",
+        backgroundColor: "#14d214",
+        yAxisID: "y",
+      },
+    ],
+  };
+
+
   var options = {
     maintainAspectRatio: false,
     interaction: {
@@ -464,7 +608,7 @@ function AllData() {
       },
       title: {
         display: true,
-        text: "Temperatures and Water",
+        text: "Costs and Carbon Intensity",
       },
     },
     scales: {
@@ -494,6 +638,19 @@ function AllData() {
           text: "Pence",
         },
       },
+      y1: {
+        type: "linear",
+        display: true,
+        position: "right",
+        ticks: {
+          count:6
+        },
+        title: {
+          display: true,
+          text: "gCO2/kWh",
+        },
+      },
+      
     
     },
   };
@@ -689,6 +846,69 @@ function AllData() {
     },
   };
 
+  var options4 = {
+    maintainAspectRatio: false,
+    interaction: {
+      mode: "index",
+    },
+    responsive: true,
+    plugins: {
+      datalabels: {
+        display: false,
+      },
+      legend: {
+        labels: {
+          fontSize: 14,
+        },
+      },
+      title: {
+        display: true,
+        text: "Carbon Intensity",
+      },
+    },
+    scales: {
+      x: {
+        type: "time",
+        time: {
+          unit: "hour",
+          displayFormats: {
+            hour: "dd MMM D HH:mm",
+          },
+        },
+        adapters: {
+          date: {
+            zone: 'GB',
+          }
+        },
+      },
+      y: {
+        type: "linear",
+        display: true,
+        position: "left",
+        ticks: {
+          count:6
+        },
+        title: {
+          display: true,
+          text: "Degrees",
+        },
+      },
+      y1: {
+        type: "linear",
+        display: true,
+        position: "right",
+        ticks: {
+          count:6
+        },
+        title: {
+          display: true,
+          text: "KwH",
+        },
+      },
+      
+    },
+  };
+
   return (
     <>
       <div id="block_container">
@@ -748,6 +968,9 @@ function AllData() {
       </div>
       <div>
         <Bar height={400} data={data3} options={options3} />
+      </div>
+      <div>
+        <Bar height={400} data={data4} options={options4} />
       </div>
 
     </>
