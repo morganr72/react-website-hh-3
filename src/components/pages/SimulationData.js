@@ -166,13 +166,19 @@ function AllData() {
         backgroundColor: "#ce1b1e",
         yAxisID: "y",
       },
+    ],
+  };
+
+  var dataa = {
+    labels: chart?.map((x) => x.DateTime),
+    datasets: [
       {
         label: `Total Gas Only CO2`,
         type: "line",
         data: chart?.map((x) => x.TotalGasOnlyCarb),
         pointRadius: 3,
-        borderColor: "#7a5e77",
-        backgroundColor: "#7a5e77",
+        borderColor: "#68015a",
+        backgroundColor: "#68015a",
         yAxisID: "y1",
       },
       {
@@ -180,8 +186,8 @@ function AllData() {
         type: "line",
         data: chart?.map((x) => x.TotalFlatElecCarb),
         pointRadius: 3,
-        borderColor: "#f2d19b",
-        backgroundColor: "#f2d19b",
+        borderColor: "#f49f16",
+        backgroundColor: "#f49f16",
         yAxisID: "y1",
       },
       {
@@ -189,8 +195,8 @@ function AllData() {
         type: "line",
         data: chart?.map((x) => x.TotalActCarb),
         pointRadius: 3,
-        borderColor: "#a5a872",
-        backgroundColor: "#a5a872",
+        borderColor: "#a1ac02",
+        backgroundColor: "#a1ac02",
         yAxisID: "y1",
       },
       {
@@ -198,8 +204,8 @@ function AllData() {
         type: "line",
         data: chart?.map((x) => x.TotalCarbCarb),
         pointRadius: 3,
-        borderColor: "#c27677",
-        backgroundColor: "#c27677",
+        borderColor: "#ce1b1e",
+        backgroundColor: "#ce1b1e",
         yAxisID: "y1",
       },
     ],
@@ -590,7 +596,6 @@ function AllData() {
     ],
   };
 
-
   var options = {
     maintainAspectRatio: false,
     interaction: {
@@ -608,7 +613,7 @@ function AllData() {
       },
       title: {
         display: true,
-        text: "Costs and Carbon Intensity",
+        text: "Costs",
       },
     },
     scales: {
@@ -638,10 +643,49 @@ function AllData() {
           text: "Pence",
         },
       },
+    
+    
+    },
+  };
+  var optionsa = {
+    maintainAspectRatio: false,
+    interaction: {
+      mode: "index",
+    },
+    responsive: true,
+    plugins: {
+      datalabels: {
+        display: false,
+      },
+      legend: {
+        labels: {
+          fontSize: 14,
+        },
+      },
+      title: {
+        display: true,
+        text: "Carbon Intensity",
+      },
+    },
+    scales: {
+      x: {
+        type: "time",
+        time: {
+          unit: "hour",
+          displayFormats: {
+            hour: "dd MMM D HH:mm",
+          },
+        },
+        adapters: {
+          date: {
+            zone: 'GB',
+          }
+        },
+      },
       y1: {
         type: "linear",
         display: true,
-        position: "right",
+        position: "left",
         ticks: {
           count:6
         },
@@ -959,6 +1003,9 @@ function AllData() {
       </div>
       <div>
         <Bar height={400} data={data} options={options} />
+      </div>
+      <div>
+        <Bar height={400} data={dataa} options={optionsa} />
       </div>
       <div>
         <Bar height={400} data={data1} options={options1} />
