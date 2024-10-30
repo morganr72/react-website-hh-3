@@ -1004,9 +1004,9 @@ function AllData() {
       <div>
         <Bar height={400} data={data} options={options} />
       </div>
-      <div>
+      {/* <div>
         <Bar height={400} data={dataa} options={optionsa} />
-      </div>
+      </div> */}
       <div>
         <Bar height={400} data={data1} options={options1} />
       </div>
