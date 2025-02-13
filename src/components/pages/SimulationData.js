@@ -52,7 +52,7 @@ function AllData() {
 
   const [range, setRange] = useState([
     {
-      startDate: addDays(new Date(), 0),
+      startDate: addDays(new Date(), -2),
       endDate: new Date(),
       key: "selection",
     },
