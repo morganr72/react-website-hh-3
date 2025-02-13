@@ -45,7 +45,7 @@ ChartJS.register(
 function AllData() {
   const { user } = useAuth0();
 
-  const [val, setValue] = React.useState("P100004");
+  const [val, setValue] = React.useState("P100003");
   const handleChange = (event) => {
     setValue(event.target.value);
   };
@@ -90,14 +90,13 @@ function AllData() {
   //   console.log(fmDate);
   //   console.log(toDate);
   var baseUrl =
-    "https://5784bf0vc4.execute-api.us-east-1.amazonaws.com/default/SimulationDataAPI?premiseid=" +
-    val +
-    "&fromdate=" +
+    "https://atgyjsolhf.execute-api.us-east-1.amazonaws.com/default/BatterySimAPI?premid=P100003"+
+    "&fmdate=" +
     fmDate +
     "&todate=" +
     toDate;
   console.log(baseUrl);
-  var apiKey = "S77kRUGEvb1rS2JABzzzf81Dh7ltsiPA675qO7zR";
+
 
   const [chart, setChart] = useState([]);
 
@@ -106,7 +105,7 @@ function AllData() {
       method: `GET`,
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": `${apiKey}`,
+
       },
     })
       .then((response) => {
@@ -122,479 +121,72 @@ function AllData() {
 
   console.log("chart", chart);
 
-  console.log("Dates", chart?.map((x) => x.DateTime))
+  console.log("Dates", chart?.map((x) => x.DateTimeIX))
   useEffect(() => fetchCommands(), []);
 
 
   var data = {
-    labels: chart?.map((x) => x.DateTime),
+    labels: chart?.map((x) => x.DateTimeIX),
     datasets: [
 
       {
-        label: `Total Gas Only Cost`,
+        label: `AgilePrice`,
         type: "line",
-        data: chart?.map((x) => x.TotalGasOnlyCost),
+        data: chart?.map((x) => x.agileprice),
         pointRadius: 3,
         borderColor: "#68015a",
         backgroundColor: "#68015a",
         yAxisID: "y",
       },
       {
-        label: `Total Flat Elec Cost`,
+        label: `Battery Charge`,
         type: "line",
-        data: chart?.map((x) => x.TotalFlatElecCost),
+        data: chart?.map((x) => x.batterycharge),
         pointRadius: 3,
         borderColor: "#f49f16",
-        backgroundColor: "#f49f16",
-        yAxisID: "y",
-      },
-      {
-        label: `Total Actual Cost`,
-        type: "line",
-        data: chart?.map((x) => x.TotalActCost),
-        pointRadius: 3,
-        borderColor: "#a1ac02",
-        backgroundColor: "#a1ac02",
-        yAxisID: "y",
-      },
-      {
-        label: `Total Carbon Intensity Cost`,
-        type: "line",
-        data: chart?.map((x) => x.TotalCarbCost),
-        pointRadius: 3,
-        borderColor: "#ce1b1e",
-        backgroundColor: "#ce1b1e",
-        yAxisID: "y",
-      },
-    ],
-  };
-
-  var dataa = {
-    labels: chart?.map((x) => x.DateTime),
-    datasets: [
-      {
-        label: `Total Gas Only CO2`,
-        type: "line",
-        data: chart?.map((x) => x.TotalGasOnlyCarb),
-        pointRadius: 3,
-        borderColor: "#68015a",
-        backgroundColor: "#68015a",
-        yAxisID: "y1",
-      },
-      {
-        label: `Total Flat Elec CO2`,
-        type: "line",
-        data: chart?.map((x) => x.TotalFlatElecCarb),
-        pointRadius: 3,
-        borderColor: "#f49f16",
+        // spanGaps: false,
         backgroundColor: "#f49f16",
         yAxisID: "y1",
       },
+      // {
+      //   label: `Battery Charge Cost`,
+      //   type: "line",
+      //   data: chart?.map((x) => x.BatteryChargeCost),
+      //   pointRadius: 3,
+      //   borderColor: "#a1ac02",
+      //   backgroundColor: "#a1ac02",
+      //   yAxisID: "y",
+      // },
       {
-        label: `Total Actual CO2`,
+        label: `Battery Running`,
         type: "line",
-        data: chart?.map((x) => x.TotalActCarb),
-        pointRadius: 3,
-        borderColor: "#a1ac02",
-        backgroundColor: "#a1ac02",
-        yAxisID: "y1",
-      },
-      {
-        label: `Total Carbon Intensity CO2`,
-        type: "line",
-        data: chart?.map((x) => x.TotalCarbCarb),
+        data: chart?.map((x) => x.BatteryRunning),
         pointRadius: 3,
         borderColor: "#ce1b1e",
         backgroundColor: "#ce1b1e",
         yAxisID: "y1",
       },
-    ],
-  };
-
-  var data1 = {
-    labels: chart?.map((x) => x.DateTime),
-    datasets: [
       {
-        label: `HP Water`,
+        label: `Battery Usage`,
         type: "line",
-        showLine: false,
-        pointRadius: 9,
-        pointStyle: 'triangle',
-        data: chart?.map((x) => x.FlatHPW),
-        barThickness: "flex",
-        borderColor: "#04570f",
-        backgroundColor: "#04570f",
-        yAxisID: "y1",
-      },
-      {
-        label: `HP Heat`,
-        type: "line",
-        showLine: false,
-        pointRadius: 9,
-        pointStyle: 'triangle',
-        data: chart?.map((x) => x.FlatHPH),
-        barThickness: "flex",
-        borderColor: "#a1ac02",
-        backgroundColor: "#a1ac02",
-        yAxisID: "y1",
-      },
-      {
-        label: `Gas Water`,
-        type: "line",
-        showLine: false,
-        pointRadius: 9,
-        pointStyle: 'triangle',
-        data: chart?.map((x) => x.FlatGasW),
-        barThickness: "flex",
-        borderColor: "#f49f16",
-        backgroundColor: "#f49f16",
-        yAxisID: "y1",
-      },
-      {
-        label: `Gas Heat`,
-        type: "line",
-        showLine: false,
-        pointRadius: 9,
-        pointStyle: 'triangle',
-        data: chart?.map((x) => x.FlatGasH),
-        borderColor: "#68015a",
-        backgroundColor: "#68015a",
-        yAxisID: "y1",
-      },
-      {
-        label: `Room Temp`,
-        type: "line",
-        data: chart?.map((x) => x.FlatRoom),
+        data: chart?.map((x) => x.BatteryUsage),
         pointRadius: 3,
-        borderColor: "#ce1b1e",
-        backgroundColor: "#ce1b1e",
-        yAxisID: "y",
+        borderColor: "#2613cc",
+        backgroundColor: "#2613cc",
+        yAxisID: "y1",
       },
       {
-        label: `Water Temp`,
+        label: `Elec Demand`,
         type: "line",
-        data: chart?.map((x) => x.FlatWater),
+        data: chart?.map((x) => x.ElecDemand),
         pointRadius: 3,
-        borderColor: "#04570f",
-        backgroundColor: "#04570f",
-        yAxisID: "y",
-      },
-      {
-        label: `Desired Temp Low`,
-        pointHitRadius: 1,
-        type: "line",
-        data: chart?.map((x) => x.FlatDTL),
-        pointRadius: 1,
-        fill: "+1",
-        borderColor: "#f6ca83",
-        backgroundColor: "#f6ca83",
-        yAxisID: "y",
-      },
-
-      {
-        label: `Desired Temp High`,
-        pointHitRadius: 1,
-        type: "line",
-        data: chart?.map((x) => x.FlatDTH),
-        pointRadius: 1,
-        fill: false,
         borderColor: "#14d214",
         backgroundColor: "#14d214",
-        yAxisID: "y",
+        yAxisID: "y1",
       },
     ],
   };
 
-  var data2 = {
-    labels: chart?.map((x) => x.DateTime),
-    datasets: [
-      {
-        label: `HP Water`,
-        data: chart?.map((x) => x.GasHPW),
-        type: "line",
-        showLine: false,
-        pointRadius: 9,
-        pointStyle: 'triangle',
-        barThickness: "flex",
-        borderColor: "#04570f",
-        backgroundColor: "#04570f",
-        yAxisID: "y1",
-      },
-      {
-        label: `HP Heat`,
-        data: chart?.map((x) => x.GasHPH),
-        borderColor: "#a1ac02",
-        type: "line",
-        showLine: false,
-        pointRadius: 9,
-        pointStyle: 'triangle',
-        barThickness: "flex",
-        backgroundColor: "#a1ac02",
-        yAxisID: "y1",
-      },
-      {
-        label: `Gas Water`,
-        data: chart?.map((x) => x.GasGasW),
-        type: "line",
-        showLine: false,
-        pointRadius: 9,
-        pointStyle: 'triangle',
-        barThickness: "flex",
-        borderColor: "#f49f16",
-        backgroundColor: "#f49f16",
-        yAxisID: "y1",
-      },
-      {
-        label: `Gas Heat`,
-        data: chart?.map((x) => x.GasGasH),
-        type: "line",
-        showLine: false,
-        pointRadius: 9,
-        pointStyle: 'triangle',
-        barThickness: "flex",
-        borderColor: "#68015a",
-        backgroundColor: "#68015a",
-        yAxisID: "y1",
-      },
-      {
-        label: `Room Temp`,
-        type: "line",
-        data: chart?.map((x) => x.GasRoom),
-        pointRadius: 3,
-        borderColor: "#ce1b1e",
-        backgroundColor: "#ce1b1e",
-        yAxisID: "y",
-      },
-      {
-        label: `Water Temp`,
-        type: "line",
-        data: chart?.map((x) => x.GasWater),
-        pointRadius: 3,
-        borderColor: "#04570f",
-        backgroundColor: "#04570f",
-        yAxisID: "y",
-      },
-      {
-        label: `Desired Temp Low`,
-        pointHitRadius: 1,
-        type: "line",
-        data: chart?.map((x) => x.GasDTL),
-        pointRadius: 1,
-        fill: "+1",
-        borderColor: "#f6ca83",
-        backgroundColor: "#f6ca83",
-        yAxisID: "y",
-      },
-
-      {
-        label: `Desired Temp High`,
-        pointHitRadius: 1,
-        type: "line",
-        data: chart?.map((x) => x.GasDTH),
-        pointRadius: 1,
-        fill: false,
-        borderColor: "#14d214",
-        backgroundColor: "#14d214",
-        yAxisID: "y",
-      },
-      
-      
-    ],
-  };
-
-  var data3 = {
-    labels: chart?.map((x) => x.DateTime),
-    datasets: [
-      {
-        label: `HP Water`,
-        data: chart?.map((x) => x.ActHPW),
-        type: "line",
-        showLine: false,
-        pointRadius: 9,
-        pointStyle: 'triangle',
-        barThickness: "flex",
-        borderColor: "#04570f",
-        backgroundColor: "#04570f",
-        yAxisID: "y1",
-      },
-      {
-        label: `HP Heat`,
-        data: chart?.map((x) => x.ActHPH),
-        type: "line",
-        showLine: false,
-        pointRadius: 9,
-        pointStyle: 'triangle',
-        barThickness: "flex",
-        borderColor: "#a1ac02",
-        backgroundColor: "#a1ac02",
-        yAxisID: "y1",
-      },
-
-      {
-        label: `Gas Water`,
-        data: chart?.map((x) => x.ActGasW),
-        type: "line",
-        showLine: false,
-        pointRadius: 9,
-        pointStyle: 'triangle',
-        barThickness: "flex",
-        borderColor: "#f49f16",
-        backgroundColor: "#f49f16",
-        yAxisID: "y1",
-      },
-     
-      {
-        label: `Gas Heat`,
-        data: chart?.map((x) => x.ActGasH),
-        type: "line",
-        showLine: false,
-        pointRadius: 9,
-        pointStyle: 'triangle',
-        barThickness: "flex",
-        borderColor: "#68015a",
-        backgroundColor: "#68015a",
-        yAxisID: "y1",
-      },
-      {
-        label: `Room Temp`,
-        type: "line",
-        data: chart?.map((x) => x.ActRoom),
-        pointRadius: 3,
-        borderColor: "#ce1b1e",
-        backgroundColor: "#ce1b1e",
-        yAxisID: "y",
-      },
-      {
-        label: `Water Temp`,
-        type: "line",
-        data: chart?.map((x) => x.ActWater),
-        pointRadius: 3,
-        borderColor: "#04570f",
-        backgroundColor: "#04570f",
-        yAxisID: "y",
-      },
-      {
-        label: `Desired Temp Low`,
-        pointHitRadius: 1,
-        type: "line",
-        data: chart?.map((x) => x.ActDTL),
-        pointRadius: 1,
-        fill: "+1",
-        borderColor: "#f6ca83",
-        backgroundColor: "#f6ca83",
-        yAxisID: "y",
-      },
-
-      {
-        label: `Desired Temp High`,
-        pointHitRadius: 1,
-        type: "line",
-        data: chart?.map((x) => x.ActDTH),
-        pointRadius: 1,
-        fill: false,
-        borderColor: "#14d214",
-        backgroundColor: "#14d214",
-        yAxisID: "y",
-      },
-    ],
-  };
-
-  var data4 = {
-    labels: chart?.map((x) => x.DateTime),
-    datasets: [
-      {
-        label: `HP Water`,
-        data: chart?.map((x) => x.CarbHPW),
-        type: "line",
-        showLine: false,
-        pointRadius: 9,
-        pointStyle: 'triangle',
-        barThickness: "flex",
-        borderColor: "#04570f",
-        backgroundColor: "#04570f",
-        yAxisID: "y1",
-      },
-      {
-        label: `HP Heat`,
-        data: chart?.map((x) => x.CarbHPH),
-        type: "line",
-        showLine: false,
-        pointRadius: 9,
-        pointStyle: 'triangle',
-        barThickness: "flex",
-        borderColor: "#a1ac02",
-        backgroundColor: "#a1ac02",
-        yAxisID: "y1",
-      },
-
-      {
-        label: `Gas Water`,
-        data: chart?.map((x) => x.CarbGasW),
-        type: "line",
-        showLine: false,
-        pointRadius: 9,
-        pointStyle: 'triangle',
-        barThickness: "flex",
-        borderColor: "#f49f16",
-        backgroundColor: "#f49f16",
-        yAxisID: "y1",
-      },
-     
-      {
-        label: `Gas Heat`,
-        data: chart?.map((x) => x.CarbGasH),
-        type: "line",
-        showLine: false,
-        pointRadius: 9,
-        pointStyle: 'triangle',
-        barThickness: "flex",
-        borderColor: "#68015a",
-        backgroundColor: "#68015a",
-        yAxisID: "y1",
-      },
-      {
-        label: `Room Temp`,
-        type: "line",
-        data: chart?.map((x) => x.CarbRoom),
-        pointRadius: 3,
-        borderColor: "#ce1b1e",
-        backgroundColor: "#ce1b1e",
-        yAxisID: "y",
-      },
-      {
-        label: `Water Temp`,
-        type: "line",
-        data: chart?.map((x) => x.CarbWater),
-        pointRadius: 3,
-        borderColor: "#04570f",
-        backgroundColor: "#04570f",
-        yAxisID: "y",
-      },
-      {
-        label: `Desired Temp Low`,
-        pointHitRadius: 1,
-        type: "line",
-        data: chart?.map((x) => x.CarbDTL),
-        pointRadius: 1,
-        fill: "+1",
-        borderColor: "#f6ca83",
-        backgroundColor: "#f6ca83",
-        yAxisID: "y",
-      },
-
-      {
-        label: `Desired Temp High`,
-        pointHitRadius: 1,
-        type: "line",
-        data: chart?.map((x) => x.CarbDTH),
-        pointRadius: 1,
-        fill: false,
-        borderColor: "#14d214",
-        backgroundColor: "#14d214",
-        yAxisID: "y",
-      },
-    ],
-  };
 
   var options = {
     maintainAspectRatio: false,
@@ -643,315 +235,23 @@ function AllData() {
           text: "Pence",
         },
       },
+      y1: {
+        type: "linear",
+        display: true,
+        position: "right",
+        ticks: {
+          count:6
+        },
+        title: {
+          display: true,
+          text: "Kwh",
+        },
+      },
     
     
     },
   };
-  var optionsa = {
-    maintainAspectRatio: false,
-    interaction: {
-      mode: "index",
-    },
-    responsive: true,
-    plugins: {
-      datalabels: {
-        display: false,
-      },
-      legend: {
-        labels: {
-          fontSize: 14,
-        },
-      },
-      title: {
-        display: true,
-        text: "Carbon Intensity",
-      },
-    },
-    scales: {
-      x: {
-        type: "time",
-        time: {
-          unit: "hour",
-          displayFormats: {
-            hour: "dd MMM D HH:mm",
-          },
-        },
-        adapters: {
-          date: {
-            zone: 'GB',
-          }
-        },
-      },
-      y1: {
-        type: "linear",
-        display: true,
-        position: "left",
-        ticks: {
-          count:6
-        },
-        title: {
-          display: true,
-          text: "gCO2/kWh",
-        },
-      },
-      
-    
-    },
-  };
-
-  var options1 = {
-    maintainAspectRatio: false,
-    interaction: {
-      mode: "index",
-    },
-    responsive: true,
-    plugins: {
-      datalabels: {
-        display: false,
-      },
-      legend: {
-        labels: {
-          fontSize: 14,
-        },
-      },
-      title: {
-        display: true,
-        text: "Fixed Price Elec",
-      },
-    },
-    scales: {
-      x: {
-        type: "time",
-        time: {
-          unit: "hour",
-          displayFormats: {
-            hour: "dd MMM D HH:mm",
-          },
-        },
-        adapters: {
-          date: {
-            zone: 'GB',
-          }
-        },
-      },
-      y: {
-        type: "linear",
-        display: true,
-        position: "left",
-        ticks: {
-          count:6
-        },
-        title: {
-          display: true,
-          text: "Degrees",
-        },
-      },
-      y1: {
-        type: "linear",
-        display: true,
-        position: "right",
-        ticks: {
-          count:6
-        },
-        title: {
-          display: true,
-          text: "KwH",
-        },
-      },
-      
-    },
-  };
-
-  
-  var options2 = {
-    maintainAspectRatio: false,
-    interaction: {
-      mode: "index",
-    },
-    responsive: true,
-    plugins: {
-      datalabels: {
-        display: false,
-      },
-      legend: {
-        labels: {
-          fontSize: 14,
-        },
-      },
-      title: {
-        display: true,
-        text: "Gas Only",
-      },
-    },
-    scales: {
-      x: {
-        type: "time",
-        time: {
-          unit: "hour",
-          displayFormats: {
-            hour: "dd MMM D HH:mm",
-          },
-        },
-        adapters: {
-          date: {
-            zone: 'GB',
-          }
-        },
-      },
-      y: {
-        type: "linear",
-        display: true,
-        position: "left",
-        ticks: {
-          count:6
-        },
-        title: {
-          display: true,
-          text: "Degrees",
-        },
-      },
-      y1: {
-        type: "linear",
-        display: true,
-        position: "right",
-        ticks: {
-          count:6
-        },
-        title: {
-          display: true,
-          text: "KwH",
-        },
-      },
-      
-    },
-  };
-
-  
-  var options3 = {
-    maintainAspectRatio: false,
-    interaction: {
-      mode: "index",
-    },
-    responsive: true,
-    plugins: {
-      datalabels: {
-        display: false,
-      },
-      legend: {
-        labels: {
-          fontSize: 14,
-        },
-      },
-      title: {
-        display: true,
-        text: "Actual",
-      },
-    },
-    scales: {
-      x: {
-        type: "time",
-        time: {
-          unit: "hour",
-          displayFormats: {
-            hour: "dd MMM D HH:mm",
-          },
-        },
-        adapters: {
-          date: {
-            zone: 'GB',
-          }
-        },
-      },
-      y: {
-        type: "linear",
-        display: true,
-        position: "left",
-        ticks: {
-          count:6
-        },
-        title: {
-          display: true,
-          text: "Degrees",
-        },
-      },
-      y1: {
-        type: "linear",
-        display: true,
-        position: "right",
-        ticks: {
-          count:6
-        },
-        title: {
-          display: true,
-          text: "KwH",
-        },
-      },
-      
-    },
-  };
-
-  var options4 = {
-    maintainAspectRatio: false,
-    interaction: {
-      mode: "index",
-    },
-    responsive: true,
-    plugins: {
-      datalabels: {
-        display: false,
-      },
-      legend: {
-        labels: {
-          fontSize: 14,
-        },
-      },
-      title: {
-        display: true,
-        text: "Carbon Intensity",
-      },
-    },
-    scales: {
-      x: {
-        type: "time",
-        time: {
-          unit: "hour",
-          displayFormats: {
-            hour: "dd MMM D HH:mm",
-          },
-        },
-        adapters: {
-          date: {
-            zone: 'GB',
-          }
-        },
-      },
-      y: {
-        type: "linear",
-        display: true,
-        position: "left",
-        ticks: {
-          count:6
-        },
-        title: {
-          display: true,
-          text: "Degrees",
-        },
-      },
-      y1: {
-        type: "linear",
-        display: true,
-        position: "right",
-        ticks: {
-          count:6
-        },
-        title: {
-          display: true,
-          text: "KwH",
-        },
-      },
-      
-    },
-  };
+ 
 
   return (
     <>
@@ -984,7 +284,7 @@ function AllData() {
             </div>
           </label>
         </div>
-        <div>
+        {/* <div>
           <label className="CboxLab">
             {"Device Id "}
             <select value={val} onChange={handleChange}>
@@ -994,7 +294,7 @@ function AllData() {
               <option value="P100001">Relay</option>
             </select>
           </label>
-        </div>
+        </div> */}
         <div>
           <button className="CboxLab" type="button" onClick={fetchCommands}>
             Refresh
@@ -1004,21 +304,7 @@ function AllData() {
       <div>
         <Bar height={400} data={data} options={options} />
       </div>
-      {/* <div>
-        <Bar height={400} data={dataa} options={optionsa} />
-      </div> */}
-      <div>
-        <Bar height={400} data={data1} options={options1} />
-      </div>
-      <div>
-        <Bar height={400} data={data2} options={options2} />
-      </div>
-      <div>
-        <Bar height={400} data={data3} options={options3} />
-      </div>
-      <div>
-        <Bar height={400} data={data4} options={options4} />
-      </div>
+
 
     </>
   );
